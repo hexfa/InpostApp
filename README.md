@@ -58,7 +58,7 @@ https://github.com/hexfa/InpostApp.git
 - [APK link][link]
 
 ## Preview 🎞️
-  ### Image 📷
+  ### Image 🖼️
   <img src="https://github.com/hexfa/Files/blob/main/ComingSoon.jpg" height="300" width="400" alt="Inpost App">
   
   ### Video 📽️
@@ -84,6 +84,9 @@ https://github.com/hexfa/InpostApp.git
 - [Moshi][moshi]: A modern JSON parsing and serialization library for Kotlin and Java that makes it easy to convert JSON data to Kotlin/Java objects and vice versa.
 
 - [Mockito][mockito]: A mocking framework for unit testing in Java and Kotlin that allows the creation of mock objects to simulate dependencies and behavior during testing.
+
+  ### 💡 Advice 💡
+  In some cases, it may even be beneficial to use both **LiveData** and **Flow together**. You can use **Flow** for data processing and transformation in the   background, and then use **LiveData** to observe and update UI components based on the transformed data.
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen.)
 
