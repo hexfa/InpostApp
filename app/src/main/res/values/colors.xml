@@ -11,4 +11,5 @@
     <color name="gray_dark">#404041</color>
     <color name="background">#F2F2F2</color>
     <color name="loading_background">#81514D</color>
+    <color name="yellow">#FFCD00</color>
 </resources>
