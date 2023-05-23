@@ -4,10 +4,10 @@ import android.content.Context
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.delay
+import io.reactivex.Single
 import pl.inpost.recruitmenttask.R
-import pl.inpost.recruitmenttask.model.api.ShipmentApi
 import pl.inpost.recruitmenttask.model.local.CustomerNetwork
+import pl.inpost.recruitmenttask.model.api.ShipmentApi
 import pl.inpost.recruitmenttask.model.local.EventLogNetwork
 import pl.inpost.recruitmenttask.model.local.OperationsNetwork
 import pl.inpost.recruitmenttask.model.local.ShipmentNetwork
@@ -38,16 +38,17 @@ class MockShipmentApi(
     }
     private var firstUse = true
 
-    override suspend fun getShipments(): List<ShipmentNetwork> {
-        delay(1000)
-        return if (firstUse) {
-            firstUse = false
-            emptyList()
-        } else {
-            response.shipments
+    /*
+        override suspend fun getShipments(): List<ShipmentNetwork> {
+            delay(1000)
+            return if (firstUse) {
+                firstUse = false
+                emptyList()
+            } else {
+                response.shipments
+            }
         }
-    }
-
+    */
     private fun mockShipmentNetwork(
         number: String = Random.nextLong(1, 9999_9999_9999_9999).toString(),
         type: ShipmentType = ShipmentType.PARCEL_LOCKER,
@@ -99,4 +100,11 @@ class MockShipmentApi(
         expandAvizo = expandAvizo,
         endOfWeekCollection = endOfWeekCollection
     )
+
+
+    override fun getShipments(): Single<ShipmentsResponse> {
+        val shipments = response
+        return Single.just(shipments)
+    }
+
 }

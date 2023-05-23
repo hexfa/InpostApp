@@ -1,7 +1,8 @@
 package pl.inpost.recruitmenttask.model.api
 
-import pl.inpost.recruitmenttask.model.local.ShipmentNetwork
+import io.reactivex.Single
+import pl.inpost.recruitmenttask.model.local.ShipmentsResponse
 
 interface ShipmentApi {
-    suspend fun getShipments(): List<ShipmentNetwork>
+    fun getShipments(): Single<ShipmentsResponse>?
 }
