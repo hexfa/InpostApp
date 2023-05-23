@@ -28,7 +28,7 @@ https://github.com/hexfa/InpostApp.git
   ```
 
 - #### Structure
-  **_MVVM_**
+  **_Model-View-ViewModel (MVVM)_**
 
 ## Configuration ⚙️
 
@@ -65,11 +65,15 @@ https://github.com/hexfa/InpostApp.git
   <img src="https://github.com/hexfa/Files/blob/main/ComingSoon.jpg" height="300" width="400" alt="Inpost App">
 
 ## Built With 🛠
+- [Kotlin][kotlin]
 - [Coroutine][coroutine]
 - [Hilt][hilt]
 - [LiveData][live-data]
 - [Dokka][dokka-site]
-
+- [Junit][junit]
+- [Room][room]
+- [Moshi][moshi]
+- [Mockito][mockito]
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen.)
 
@@ -84,3 +88,8 @@ https://github.com/hexfa/InpostApp.git
    [coroutine]: <https://kotlinlang.org/docs/coroutines-guide.html>
    [live-data]: <https://developer.android.com/topic/libraries/architecture/livedata>
    [dokka-site]: <https://kotlinlang.org/docs/dokka-gradle.html>
+   [kotlin]: <https://kotlinlang.org/>
+   [junit]: <https://junit.org/>
+   [room]: <https://developer.android.com/training/data-storage/room>
+   [moshi]: <https://github.com/square/moshi>
+   [mockito]: <https://site.mockito.org/>
