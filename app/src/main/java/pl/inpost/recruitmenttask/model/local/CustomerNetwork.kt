@@ -1,4 +1,4 @@
-package pl.inpost.recruitmenttask.network.model
+package pl.inpost.recruitmenttask.model.local
 
 data class CustomerNetwork(
     val email: String?,

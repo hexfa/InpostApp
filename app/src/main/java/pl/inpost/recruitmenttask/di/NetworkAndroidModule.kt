@@ -7,7 +7,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import pl.inpost.recruitmenttask.model.api.ShipmentApi
-import pl.inpost.recruitmenttask.view.adapter.ApiType
 
 @InstallIn(SingletonComponent::class)
 @Module

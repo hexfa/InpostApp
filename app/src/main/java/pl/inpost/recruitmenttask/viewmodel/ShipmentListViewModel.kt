@@ -8,7 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import pl.inpost.recruitmenttask.model.api.ShipmentApi
-import pl.inpost.recruitmenttask.model.ShipmentNetwork
+import pl.inpost.recruitmenttask.model.local.ShipmentNetwork
 import pl.inpost.recruitmenttask.utils.setState
 import javax.inject.Inject
 

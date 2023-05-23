@@ -1,5 +1,8 @@
-package pl.inpost.recruitmenttask.network.model
+package pl.inpost.recruitmenttask.model.local
 
+import pl.inpost.recruitmenttask.model.local.CustomerNetwork
+import pl.inpost.recruitmenttask.model.local.EventLogNetwork
+import pl.inpost.recruitmenttask.model.local.OperationsNetwork
 import java.time.ZonedDateTime
 
 data class ShipmentNetwork(

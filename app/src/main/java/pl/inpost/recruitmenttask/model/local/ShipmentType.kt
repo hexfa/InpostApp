@@ -1,4 +1,4 @@
-package pl.inpost.recruitmenttask.network.model
+package pl.inpost.recruitmenttask.model.local
 
 enum class ShipmentType {
     PARCEL_LOCKER,

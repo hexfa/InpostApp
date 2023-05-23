@@ -1,4 +1,4 @@
-package pl.inpost.recruitmenttask.network.model
+package pl.inpost.recruitmenttask.model.local
 
 import androidx.annotation.StringRes
 import pl.inpost.recruitmenttask.R
