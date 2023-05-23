@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">InPost Recruitment Task</string>
+
+    <string name="status_adopted_at_sorting_center">Przyjęta w Sortowni</string>
+    <string name="status_sent_from_sorting_center">Wysłana z Sortowni</string>
+    <string name="status_adopted_at_source_branch">Przyjęta w Oddziale</string>
+    <string name="status_sent_from_source_branch">Wysłana z Oddziału</string>
+    <string name="status_avizo">Powrót do Oddziału</string>
+    <string name="status_confirmed">W trakcie przygotowania</string>
+    <string name="status_created">Przesyłka utworzona</string>
+    <string name="status_delivered">Odebrana</string>
+    <string name="status_other">Inny status</string>
+    <string name="status_out_for_delivery">Wydana do doręczenia</string>
+    <string name="status_pickup_time_expired">Upłynął termin odbioru</string>
+    <string name="status_ready_to_pickup">Gotowa do odbioru</string>
+    <string name="status_returned_to_sender">Zwrot do Nadawcy</string>
+</resources>

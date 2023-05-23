@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/readyToPickupShipmentsMenu"
+        android:title="Gotowe do odbioru"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/otherShipmentsMenu"
+        android:title="Pozostałe"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/allShipmentsMenu"
+        android:title="Wszystkie"
+        app:showAsAction="never" />
+</menu>
