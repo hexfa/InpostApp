@@ -14,6 +14,7 @@ import pl.inpost.recruitmenttask.model.local.ShipmentNetwork
 import pl.inpost.recruitmenttask.model.local.ShipmentStatus
 import pl.inpost.recruitmenttask.model.local.ShipmentType
 import pl.inpost.recruitmenttask.model.local.ShipmentsResponse
+import pl.inpost.recruitmenttask.utils.ApiType
 import java.time.ZonedDateTime
 import kotlin.random.Random
 
