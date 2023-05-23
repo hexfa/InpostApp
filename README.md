@@ -66,14 +66,23 @@ https://github.com/hexfa/InpostApp.git
 
 ## Built With 🛠
 - [Kotlin][kotlin]: A modern and concise programming language for Android development.
+ 
 - [Jetpack][jetpack]: Jetpack is a suite of libraries to help with app development and reduce boilerplate code. Using modern design practices, Jetpack libraries enable fewer crashes and memory leaks.
+
 - [Coroutine][coroutine]: A Kotlin library that simplifies asynchronous programming and enables the writing of asynchronous code in a sequential manner.
+
 - [Hilt][hilt]: A dependency injection library for Android that simplifies the process of injecting dependencies into Android components.
+
 - [LiveData][live-data]: A lifecycle-aware data holder class in Android Jetpack that allows data to be observed for changes and provides automatic updates to the UI.
+
 - [Dokka][dokka-site]: A documentation generation tool for Kotlin and Java that generates API documentation in various formats, including HTML and Markdown.
+
 - [Junit][junit]: A popular unit testing framework for Java and Kotlin that provides a set of annotations and assertions for writing automated tests.
+
 - [Room][room]: An SQLite database library for Android that provides an abstraction layer over SQLite and enables efficient database operations using annotations and generated code.
+
 - [Moshi][moshi]: A modern JSON parsing and serialization library for Kotlin and Java that makes it easy to convert JSON data to Kotlin/Java objects and vice versa.
+
 - [Mockito][mockito]: A mocking framework for unit testing in Java and Kotlin that allows the creation of mock objects to simulate dependencies and behavior during testing.
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen.)
