@@ -7,7 +7,6 @@ import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import pl.inpost.recruitmenttask.R
 import pl.inpost.recruitmenttask.databinding.FragmentShipmentListBinding
-import pl.inpost.recruitmenttask.databinding.ShipmentItemBinding
 import pl.inpost.recruitmenttask.viewmodel.ShipmentListViewModel
 
 @AndroidEntryPoint
@@ -34,13 +33,7 @@ class ShipmentListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.viewState.observe(requireActivity()) { shipments ->
-            shipments.forEach { shipmentNetwork ->
-                val shipmentItemBinding = ShipmentItemBinding.inflate(layoutInflater).apply {
-                    shipmentNumber.text = shipmentNetwork.number
-                    status.text = shipmentNetwork.status
-                }
-                binding?.scrollViewContent?.addView(shipmentItemBinding.root)
-            }
+
         }
     }
 
