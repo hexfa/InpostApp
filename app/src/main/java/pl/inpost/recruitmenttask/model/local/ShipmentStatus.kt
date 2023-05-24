@@ -35,4 +35,10 @@ enum class ShipmentStatus(
     PICKUP_TIME_EXPIRED(R.string.status_pickup_time_expired),
     READY_TO_PICKUP(R.string.status_ready_to_pickup),
     RETURNED_TO_SENDER(R.string.status_returned_to_sender);
+
+    companion object {
+        fun fromString(status: String?): ShipmentStatus {
+            return values().find { it.name == status } ?: OTHER
+        }
+    }
 }

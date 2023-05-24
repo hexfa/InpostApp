@@ -18,6 +18,7 @@ import pl.inpost.recruitmenttask.R
 import pl.inpost.recruitmenttask.databinding.FragmentShipmentListBinding
 import pl.inpost.recruitmenttask.model.local.OperationsNetwork
 import pl.inpost.recruitmenttask.model.local.ShipmentNetwork
+import pl.inpost.recruitmenttask.model.local.ShipmentStatus
 import pl.inpost.recruitmenttask.view.adapter.ArchiveOnClick
 import pl.inpost.recruitmenttask.view.adapter.ShipmentItemAdapter
 import pl.inpost.recruitmenttask.viewmodel.ShipmentListViewModel
@@ -175,6 +176,13 @@ class ShipmentListFragment() : Fragment(), ArchiveOnClick, CoroutineScope {
 
                     true
                 }
+
+                R.id.menu_status_order -> {
+                    // Handle "status_order" menu item click
+                    showStatusOrderItem(shipmentList)
+
+                    true
+                }
                 // Add more menu item cases as needed
 
                 else -> false
@@ -253,6 +261,7 @@ class ShipmentListFragment() : Fragment(), ArchiveOnClick, CoroutineScope {
         val list = mutableListOf<ShipmentNetwork>()
         for (shipment in shipments) {
             if (shipment.expiryDate?.equals("") == false) {
+                Log.d(TAG, "showExpiryDateItem: $shipment")
                 list.add(shipment)
             }
         }
@@ -293,12 +302,25 @@ class ShipmentListFragment() : Fragment(), ArchiveOnClick, CoroutineScope {
 
     }
 
+    private fun showStatusOrderItem(shipments: List<ShipmentNetwork>) {
+        Log.d(TAG, "showStatusOrderItem: $shipments")
+
+        val sortedShipments = shipments.sortedBy { it.getShipmentStatus().ordinal }
+        showFilterItem(sortedShipments)
+       Log.d(TAG, "showStatusOrderItem: $sortedShipments")
+
+
+    }
+
+
+
     private fun showFilterItem(shipment: List<ShipmentNetwork>?) {
         binding?.layoutInProgress?.visibility = View.GONE
         binding?.layoutPending?.visibility = View.GONE
         binding?.layoutPickup?.visibility = View.GONE
         binding?.layoutInTransit?.visibility = View.GONE
         binding?.layoutFilter?.visibility = View.VISIBLE
+        Log.d(TAG, "showFilterItem: $shipment")
         if (shipment != null) {
             shipmentFilterItemAdapter?.addData(shipment)
         }

@@ -28,4 +28,8 @@ data class ShipmentNetwork(
     val receiver: CustomerNetwork?,
     @Embedded(prefix = "operations_")
     val operations: OperationsNetwork?
-)
+){
+    fun getShipmentStatus(): ShipmentStatus {
+        return ShipmentStatus.fromString(status)
+    }
+}

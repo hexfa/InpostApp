@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <androidx.cardview.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -11,6 +12,7 @@
         card_view:cardUseCompatPadding="true"
         card_view:cardPreventCornerOverlap="false"
         card_view:cardMaxElevation="8dp">
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -18,7 +20,14 @@
     android:layout_width="match_parent"
     android:layout_marginBottom="16dp"
     android:layout_height="wrap_content">
-
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/star_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:src="@drawable/star_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/shipmentNumber_layout"
         android:layout_width="match_parent"

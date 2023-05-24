@@ -13,6 +13,7 @@ import pl.inpost.recruitmenttask.model.local.ShipmentNetwork
 import pl.inpost.recruitmenttask.model.local.ShipmentType
 
 internal class ShipmentItemAdapter(val listener: ArchiveOnClick,val isArchivePage:Boolean) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
     private lateinit var mContext: Context
     private val shipmentItemList: MutableList<ShipmentNetwork> = ArrayList()
 
@@ -76,6 +77,13 @@ internal class ShipmentItemAdapter(val listener: ArchiveOnClick,val isArchivePag
                 listener.clickListener(shipmentItem)
                     shipmentItemList.remove(shipmentItem)
                     notifyDataSetChanged()
+
+            }
+
+            if (shipmentItem.operations?.highlight == true) {
+                holderShipmentItemBinding.starIcon.setImageResource(R.drawable.star_icon_yellow)
+            }else{
+                holderShipmentItemBinding.starIcon.setImageResource(R.drawable.star_icon)
 
             }
 
