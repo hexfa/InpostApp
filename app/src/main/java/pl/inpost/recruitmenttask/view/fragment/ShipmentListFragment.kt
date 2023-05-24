@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,7 +18,6 @@ import pl.inpost.recruitmenttask.R
 import pl.inpost.recruitmenttask.databinding.FragmentShipmentListBinding
 import pl.inpost.recruitmenttask.model.local.OperationsNetwork
 import pl.inpost.recruitmenttask.model.local.ShipmentNetwork
-import pl.inpost.recruitmenttask.model.local.ShipmentStatus
 import pl.inpost.recruitmenttask.view.adapter.ArchiveOnClick
 import pl.inpost.recruitmenttask.view.adapter.ShipmentItemAdapter
 import pl.inpost.recruitmenttask.viewmodel.ShipmentListViewModel
@@ -30,7 +28,7 @@ private const val TAG = "ShipmentListFragment"
 @AndroidEntryPoint
 class ShipmentListFragment() : Fragment(), ArchiveOnClick, CoroutineScope {
 
-    private lateinit var viewModel:ShipmentListViewModel
+    private lateinit var viewModel: ShipmentListViewModel
     private var binding: FragmentShipmentListBinding? = null
     private var shipmentItemAdapterInTransit: ShipmentItemAdapter? = null
     private var shipmentItemAdapterPickup: ShipmentItemAdapter? = null
@@ -81,7 +79,7 @@ class ShipmentListFragment() : Fragment(), ArchiveOnClick, CoroutineScope {
         viewModel.getShipmentOfLocal()
 
         viewModel.getShipment().observe(requireActivity()) { shipments ->
-            viewModel.shipmentNetworksLocal.observe(viewLifecycleOwner){list->
+            viewModel.shipmentNetworksLocal.observe(viewLifecycleOwner) { list ->
                 shipmentListArchive.clear()
                 shipmentItemPending.clear()
                 shipmentItemInProgress.clear()
@@ -89,11 +87,11 @@ class ShipmentListFragment() : Fragment(), ArchiveOnClick, CoroutineScope {
                 shipmentItemsPickup.clear()
                 shipmentListFilter.clear()
 
-                if (list.isEmpty()){
+                if (list.isEmpty()) {
                     if (shipments != null) {
                         viewModel.addItems(shipments)
                     }
-                }else{
+                } else {
                     list.let {
                         shipmentListFilter.addAll(it)
                     }
@@ -129,7 +127,6 @@ class ShipmentListFragment() : Fragment(), ArchiveOnClick, CoroutineScope {
                     )
                 }
             }
-
 
 
         }
@@ -309,11 +306,10 @@ class ShipmentListFragment() : Fragment(), ArchiveOnClick, CoroutineScope {
 
         val sortedShipments = shipments.sortedBy { it.getShipmentStatus().ordinal }
         showFilterItem(sortedShipments)
-       Log.d(TAG, "showStatusOrderItem: $sortedShipments")
+        Log.d(TAG, "showStatusOrderItem: $sortedShipments")
 
 
     }
-
 
 
     private fun showFilterItem(shipment: List<ShipmentNetwork>?) {
@@ -382,7 +378,7 @@ class ShipmentListFragment() : Fragment(), ArchiveOnClick, CoroutineScope {
     }
 
     override fun goToMoreFragment(shipmentItem: ShipmentNetwork) {
-        viewModel.shipmentLiveData.value=shipmentItem
+        viewModel.shipmentLiveData.value = shipmentItem
         findNavController().navigate(R.id.action_shipmentListFragment_to_shipmentMoreFragment)
     }
 

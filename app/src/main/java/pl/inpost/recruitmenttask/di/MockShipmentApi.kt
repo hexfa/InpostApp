@@ -62,9 +62,4 @@ class MockShipmentApi(
     }
 
 
-//    override fun getShipments(): Single<ShipmentsResponse> {
-//        val shipments = response
-//        return Single.just(shipments)
-//    }
-
 }

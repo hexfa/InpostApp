@@ -1,16 +1,16 @@
 package pl.inpost.recruitmenttask.view.fragment
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import pl.inpost.recruitmenttask.R
 import pl.inpost.recruitmenttask.databinding.FragmentArchiveBinding
 import pl.inpost.recruitmenttask.model.local.OperationsNetwork
@@ -21,7 +21,7 @@ import pl.inpost.recruitmenttask.viewmodel.ShipmentListViewModel
 import kotlin.coroutines.CoroutineContext
 
 @AndroidEntryPoint
-class ArchiveFragment : Fragment() ,ArchiveOnClick,CoroutineScope{
+class ArchiveFragment : Fragment(), ArchiveOnClick, CoroutineScope {
     private val viewModel: ShipmentListViewModel by viewModels()
     private var binding: FragmentArchiveBinding? = null
     private var shipmentItemAdapterPickup: ShipmentItemAdapter? = null
@@ -47,9 +47,9 @@ class ArchiveFragment : Fragment() ,ArchiveOnClick,CoroutineScope{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getShipmentOfLocal()
-        viewModel.shipmentNetworksLocal.observe(viewLifecycleOwner){
+        viewModel.shipmentNetworksLocal.observe(viewLifecycleOwner) {
             shipmentListArchive.clear()
-            it.forEach {shipment->
+            it.forEach { shipment ->
                 if (shipment.operations?.manualArchive == true) {
                     shipmentListArchive.add(shipment)
                 }
@@ -59,7 +59,7 @@ class ArchiveFragment : Fragment() ,ArchiveOnClick,CoroutineScope{
                 LinearLayoutManager.VERTICAL,
                 false
             )
-            binding?.recyclerShipment?.adapter=shipmentItemAdapterPickup
+            binding?.recyclerShipment?.adapter = shipmentItemAdapterPickup
 
             shipmentItemAdapterPickup?.addData(shipmentListArchive)
         }
@@ -91,7 +91,7 @@ class ArchiveFragment : Fragment() ,ArchiveOnClick,CoroutineScope{
     }
 
     override fun goToMoreFragment(shipmentItem: ShipmentNetwork) {
-        viewModel.shipmentLiveData.value=shipmentItem
+        viewModel.shipmentLiveData.value = shipmentItem
         findNavController().navigate(R.id.action_archiveFragment_to_shipmentMoreFragment)
     }
 

@@ -12,7 +12,8 @@ import pl.inpost.recruitmenttask.databinding.ShipmentListItemBinding
 import pl.inpost.recruitmenttask.model.local.ShipmentNetwork
 import pl.inpost.recruitmenttask.model.local.ShipmentType
 
-internal class ShipmentItemAdapter(val listener: ArchiveOnClick,val isArchivePage:Boolean) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+internal class ShipmentItemAdapter(val listener: ArchiveOnClick, val isArchivePage: Boolean) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private lateinit var mContext: Context
     private val shipmentItemList: MutableList<ShipmentNetwork> = ArrayList()
@@ -69,20 +70,20 @@ internal class ShipmentItemAdapter(val listener: ArchiveOnClick,val isArchivePag
             if (shipmentItem.shipmentType == ShipmentType.PARCEL_LOCKER.name) {
                 holderShipmentItemBinding.shipmentType.setImageResource(R.drawable.parcel_locker)
             }
-            if (isArchivePage){
+            if (isArchivePage) {
                 holderShipmentItemBinding.archive.setImageResource(R.drawable.unarchive)
 
             }
-            holderShipmentItemBinding.archive.setOnClickListener{
+            holderShipmentItemBinding.archive.setOnClickListener {
                 listener.clickListener(shipmentItem)
-                    shipmentItemList.remove(shipmentItem)
-                    notifyDataSetChanged()
+                shipmentItemList.remove(shipmentItem)
+                notifyDataSetChanged()
 
             }
 
             if (shipmentItem.operations?.highlight == true) {
                 holderShipmentItemBinding.starIcon.setImageResource(R.drawable.star_icon_yellow)
-            }else{
+            } else {
                 holderShipmentItemBinding.starIcon.setImageResource(R.drawable.star_icon)
 
             }
@@ -97,7 +98,7 @@ internal class ShipmentItemAdapter(val listener: ArchiveOnClick,val isArchivePag
 
 }
 
-interface ArchiveOnClick{
+interface ArchiveOnClick {
     fun clickListener(shipmentItem: ShipmentNetwork)
     fun goToMoreFragment(shipmentItem: ShipmentNetwork)
 }

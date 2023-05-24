@@ -18,52 +18,12 @@ class ShipmentListViewModel @Inject constructor(
     private val shipmentRepositoryDao: ShipmentRepositoryDao
 ) : ViewModel() {
     val shipmentNetworksLocal: MutableLiveData<List<ShipmentNetwork>> = MutableLiveData()
-    val shipmentLiveData:MutableLiveData<ShipmentNetwork> = MutableLiveData()
+    val shipmentLiveData: MutableLiveData<ShipmentNetwork> = MutableLiveData()
 
     init {
         refreshData()
     }
 
-    /*  fun getShipment(): LiveData<ShipmentsResponse> {
-          val shipmentItemList = MutableLiveData<ShipmentsResponse>()
-
-          // Use coroutine scope for suspending function calls
-          CoroutineScope(Dispatchers.IO).launch {
-              try {
-                  val response = withContext(Dispatchers.IO) {
-                      suspendCoroutine { continuation ->
-                          shipmentRepository.getShipments()
-                              ?.subscribeOn(Schedulers.io())
-                              ?.observeOn(AndroidSchedulers.mainThread())
-                              ?.subscribe(object : SingleObserver<ShipmentsResponse> {
-                                  override fun onSubscribe(d: Disposable) {
-                                      compositeDisposable.add(d)
-                                      Log.e(TAG, "onSubscribe: ")
-                                  }
-
-                                  override fun onError(e: Throwable) {
-                                      continuation.resumeWithException(e)
-                                      Log.e(TAG, "onError: ")
-                                  }
-
-                                  override fun onSuccess(t: ShipmentsResponse) {
-                                      continuation.resume(t)
-                                      Log.e(TAG, "onSuccess: ")
-                                  }
-                              })
-                      }
-                  }
-
-                  // Update the live data with the response
-                  shipmentItemList.postValue(response)
-              } catch (e: Exception) {
-                  // Handle any exceptions and log errors
-                  Log.e(TAG, "Exception: ${e.message}")
-              }
-          }
-
-          return shipmentItemList
-      }*/
     val shipmentItemList = MutableLiveData<ShipmentsResponse?>()
 
     fun getShipment() = liveData(Dispatchers.IO) {
@@ -86,11 +46,11 @@ class ShipmentListViewModel @Inject constructor(
         }
     }
 
-     fun getShipmentOfLocal() {
-         viewModelScope.launch (Dispatchers.IO){
-             shipmentNetworksLocal.postValue(shipmentRepositoryDao.getAllItem())
-             runBlocking {  }
-         }
+    fun getShipmentOfLocal() {
+        viewModelScope.launch(Dispatchers.IO) {
+            shipmentNetworksLocal.postValue(shipmentRepositoryDao.getAllItem())
+            runBlocking { }
+        }
 
 
     }
