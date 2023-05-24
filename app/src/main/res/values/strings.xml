@@ -24,5 +24,12 @@
     <string name="in_progress">In progress</string>
     <string name="pending">Pending</string>
     <string name="text">InPost recruitment task</string>
+    <string name="filter">filter</string>
+    <string name="expiredate">ExpireDate</string>
+    <string name="pickupDate">PickupDate</string>
+    <string name="sortedDate">SortedDate</string>
+    <string name="number">Number</string>
+    <string name="default_item">default</string>
+    <string name="todo">TODO</string>
 
 </resources>

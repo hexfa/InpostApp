@@ -19,53 +19,67 @@
             android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="72dp"
+            android:background="@drawable/header"
             android:elevation="16dp"
             android:outlineProvider="bounds"
-            android:background="@drawable/header"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" >
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/menu_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="16dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/ic_menu" />
+
             <TextView
                 android:layout_width="196dp"
                 android:layout_height="24dp"
                 android:layout_alignParentStart="true"
-                android:layout_centerHorizontal="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="32dp"
-                android:text="@string/text"
+                android:layout_centerHorizontal="true"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginBottom="16dp"
-                android:textAppearance="@style/text"
-                android:lineSpacingExtra="6sp"
                 android:gravity="center_vertical"
-                />
+                android:lineSpacingExtra="6sp"
+                android:text="@string/text"
+                android:textAppearance="@style/text" />
         </RelativeLayout>
+
         <TextView
             android:id="@+id/text"
             android:layout_width="196dp"
             android:layout_height="24dp"
-            app:layout_constraintTop_toTopOf="@id/header"
-            app:layout_constraintBottom_toBottomOf="@id/header"
-            android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="32dp"
-            android:text="@string/text"
+            android:layout_centerHorizontal="true"
             android:layout_marginStart="20dp"
-            app:layout_constraintStart_toStartOf="@id/header"
+            android:layout_marginTop="32dp"
             android:layout_marginBottom="16dp"
-            android:textAppearance="@style/text"
-            android:lineSpacingExtra="6sp"
             android:gravity="center_vertical"
-            />
+            android:lineSpacingExtra="6sp"
+            android:text="@string/text"
+            android:textAppearance="@style/text"
+            app:layout_constraintBottom_toBottomOf="@id/header"
+            app:layout_constraintStart_toStartOf="@id/header"
+            app:layout_constraintTop_toTopOf="@id/header" />
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/header">
+
             <androidx.constraintlayout.widget.ConstraintLayout
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layout_in_transit"
                     android:layout_width="match_parent"
@@ -120,6 +134,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/divider_tex_in_transit" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layout_pickup"
                     android:layout_width="match_parent"
@@ -176,6 +191,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/divider_tex_pickup" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layout_in_progress"
                     android:layout_width="match_parent"
@@ -233,6 +249,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/divider_tex_in_progress" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layout_pending"
                     android:layout_width="match_parent"
@@ -289,6 +306,61 @@
                         android:layout_marginTop="24dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/divider_tex_pending" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_filter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@id/layout_pending"
+                    app:layout_constraintTop_toBottomOf="@id/layout_in_progress">
+
+                    <!-- Divider and TextView -->
+
+                    <View
+                        android:id="@+id/divider_filter_left"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/divider"
+                        app:layout_constraintBottom_toBottomOf="@id/divider_text_another"
+                        app:layout_constraintEnd_toStartOf="@id/divider_text_another"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/divider_text_another" />
+
+                    <TextView
+                        android:id="@+id/divider_text_another"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:text="@string/filter"
+                        app:layout_constraintEnd_toStartOf="@id/divider_filter_right"
+                        app:layout_constraintStart_toEndOf="@id/divider_filter_left"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/divider_filter_right"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/divider"
+                        app:layout_constraintBottom_toBottomOf="@id/divider_text_another"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/divider_text_another"
+                        app:layout_constraintTop_toTopOf="@id/divider_text_another" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_filter"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/divider_text_another" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
