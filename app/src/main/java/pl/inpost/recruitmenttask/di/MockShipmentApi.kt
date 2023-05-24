@@ -8,15 +8,9 @@ import io.reactivex.Single
 import pl.inpost.recruitmenttask.R
 import pl.inpost.recruitmenttask.model.local.CustomerNetwork
 import pl.inpost.recruitmenttask.model.api.ShipmentApi
-import pl.inpost.recruitmenttask.model.local.EventLogNetwork
 import pl.inpost.recruitmenttask.model.local.OperationsNetwork
-import pl.inpost.recruitmenttask.model.local.ShipmentNetwork
-import pl.inpost.recruitmenttask.model.local.ShipmentStatus
-import pl.inpost.recruitmenttask.model.local.ShipmentType
 import pl.inpost.recruitmenttask.model.local.ShipmentsResponse
 import pl.inpost.recruitmenttask.utils.ApiType
-import java.time.ZonedDateTime
-import kotlin.random.Random
 
 class MockShipmentApi(
     @ApplicationContext private val context: Context,
@@ -36,44 +30,7 @@ class MockShipmentApi(
 
         jsonAdapter.fromJson(json) as ShipmentsResponse
     }
-    private var firstUse = true
 
-    /*
-        override suspend fun getShipments(): List<ShipmentNetwork> {
-            delay(1000)
-            return if (firstUse) {
-                firstUse = false
-                emptyList()
-            } else {
-                response.shipments
-            }
-        }
-    */
-    private fun mockShipmentNetwork(
-        number: String = Random.nextLong(1, 9999_9999_9999_9999).toString(),
-        type: ShipmentType = ShipmentType.PARCEL_LOCKER,
-        status: ShipmentStatus = ShipmentStatus.DELIVERED,
-        sender: CustomerNetwork? = mockCustomerNetwork(),
-        receiver: CustomerNetwork? = mockCustomerNetwork(),
-        operations: OperationsNetwork = mockOperationsNetwork(),
-        eventLog: List<EventLogNetwork> = emptyList(),
-        openCode: String? = null,
-        expireDate: ZonedDateTime? = null,
-        storedDate: ZonedDateTime? = null,
-        pickupDate: ZonedDateTime? = null
-    ) = ShipmentNetwork(
-        number = number,
-        shipmentType = type.name,
-        status = status.name,
-        eventLog = eventLog,
-        openCode = openCode,
-        expiryDate = expireDate,
-        storedDate = storedDate,
-        pickUpDate = pickupDate,
-        receiver = receiver,
-        sender = sender,
-        operations = operations
-    )
 
     private fun mockCustomerNetwork(
         email: String = "name@email.com",

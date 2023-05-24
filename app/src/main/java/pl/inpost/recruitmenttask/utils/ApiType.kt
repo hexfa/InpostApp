@@ -2,9 +2,15 @@ package pl.inpost.recruitmenttask.utils
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.room.TypeConverter
 import com.squareup.moshi.FromJson
 import com.squareup.moshi.ToJson
 import dagger.Reusable
+import org.json.JSONArray
+import org.json.JSONObject
+import pl.inpost.recruitmenttask.model.local.CustomerNetwork
+import pl.inpost.recruitmenttask.model.local.EventLogNetwork
+import pl.inpost.recruitmenttask.model.local.OperationsNetwork
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
@@ -17,9 +23,11 @@ class ApiType @Inject constructor() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     @FromJson
-    fun toZonedDateTime(value: String): ZonedDateTime = formatter.parse(value, ZonedDateTime::from)
+    fun toZonedDateTime(value: String?): ZonedDateTime? = formatter.parse(value, ZonedDateTime::from)
 
     @RequiresApi(Build.VERSION_CODES.O)
     @ToJson
     fun fromZonedDateTime(date: ZonedDateTime?): String? = date?.format(formatter)
+
+
 }

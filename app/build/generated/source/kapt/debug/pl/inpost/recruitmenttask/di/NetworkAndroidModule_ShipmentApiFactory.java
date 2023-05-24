@@ -9,7 +9,7 @@ import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
 import javax.inject.Provider;
 import pl.inpost.recruitmenttask.model.api.ShipmentApi;
-import pl.inpost.recruitmenttask.utils.ApiType;
+import pl.inpost.recruitmenttask.model.local.db.TypeConverter;
 
 @ScopeMetadata
 @QualifierMetadata("dagger.hilt.android.qualifiers.ApplicationContext")
@@ -27,10 +27,10 @@ public final class NetworkAndroidModule_ShipmentApiFactory implements Factory<Sh
 
   private final Provider<Context> contextProvider;
 
-  private final Provider<ApiType> apiTypeProvider;
+  private final Provider<TypeConverter> apiTypeProvider;
 
   public NetworkAndroidModule_ShipmentApiFactory(NetworkAndroidModule module,
-      Provider<Context> contextProvider, Provider<ApiType> apiTypeProvider) {
+      Provider<Context> contextProvider, Provider<TypeConverter> apiTypeProvider) {
     this.module = module;
     this.contextProvider = contextProvider;
     this.apiTypeProvider = apiTypeProvider;
@@ -42,12 +42,12 @@ public final class NetworkAndroidModule_ShipmentApiFactory implements Factory<Sh
   }
 
   public static NetworkAndroidModule_ShipmentApiFactory create(NetworkAndroidModule module,
-      Provider<Context> contextProvider, Provider<ApiType> apiTypeProvider) {
+      Provider<Context> contextProvider, Provider<TypeConverter> apiTypeProvider) {
     return new NetworkAndroidModule_ShipmentApiFactory(module, contextProvider, apiTypeProvider);
   }
 
   public static ShipmentApi shipmentApi(NetworkAndroidModule instance, Context context,
-      ApiType apiType) {
+      TypeConverter apiType) {
     return Preconditions.checkNotNullFromProvides(instance.shipmentApi(context, apiType));
   }
 }
