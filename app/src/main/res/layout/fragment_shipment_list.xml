@@ -326,13 +326,13 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="20dp"
                         android:background="@drawable/divider"
-                        app:layout_constraintBottom_toBottomOf="@id/divider_text_another"
-                        app:layout_constraintEnd_toStartOf="@id/divider_text_another"
+                        app:layout_constraintBottom_toBottomOf="@id/divider_text_filter"
+                        app:layout_constraintEnd_toStartOf="@id/divider_text_filter"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/divider_text_another" />
+                        app:layout_constraintTop_toTopOf="@id/divider_text_filter" />
 
                     <TextView
-                        android:id="@+id/divider_text_another"
+                        android:id="@+id/divider_text_filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal|center_vertical"
@@ -348,10 +348,10 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="20dp"
                         android:background="@drawable/divider"
-                        app:layout_constraintBottom_toBottomOf="@id/divider_text_another"
+                        app:layout_constraintBottom_toBottomOf="@id/divider_text_filter"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/divider_text_another"
-                        app:layout_constraintTop_toTopOf="@id/divider_text_another" />
+                        app:layout_constraintStart_toEndOf="@id/divider_text_filter"
+                        app:layout_constraintTop_toTopOf="@id/divider_text_filter" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recycler_filter"
@@ -359,7 +359,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/divider_text_another" />
+                        app:layout_constraintTop_toBottomOf="@id/divider_text_filter" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>

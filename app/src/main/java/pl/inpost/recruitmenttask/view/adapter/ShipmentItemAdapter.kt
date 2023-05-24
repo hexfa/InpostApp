@@ -12,7 +12,7 @@ import pl.inpost.recruitmenttask.databinding.ShipmentListItemBinding
 import pl.inpost.recruitmenttask.model.local.ShipmentNetwork
 import pl.inpost.recruitmenttask.model.local.ShipmentType
 
-internal class ShipmentItemAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+internal class ShipmentItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var mContext: Context
     private val shipmentItemList: MutableList<ShipmentNetwork> = ArrayList()
 
@@ -52,15 +52,15 @@ internal class ShipmentItemAdapter() : RecyclerView.Adapter<RecyclerView.ViewHol
         fun onBind(shipmentItem: ShipmentNetwork) {
             val holderShipmentItemBinding = dataBinding as ShipmentListItemBinding
             holderShipmentItemBinding.shipmentNumberValue.text = shipmentItem.number
-            var status=""
+            var status = ""
             when (shipmentItem.status) {
-                "READY_TO_PICKUP" ->status= "Ready to Pickup"
-                "CONFIRMED" -> status="Confirmed"
-                "OUT_FOR_DELIVERY" ->status= "Out for Delivery"
-                "AVIZO" -> status="Avizo"
-                "SENT_FROM_SOURCE_BRANCH"-> status="Sent from source branch"
-                "NOT_READY"->status="not ready"
-                else -> status="Other"
+                "READY_TO_PICKUP" -> status = "Ready to Pickup"
+                "CONFIRMED" -> status = "Confirmed"
+                "OUT_FOR_DELIVERY" -> status = "Out for Delivery"
+                "AVIZO" -> status = "Avizo"
+                "SENT_FROM_SOURCE_BRANCH" -> status = "Sent from source branch"
+                "NOT_READY" -> status = "not ready"
+                else -> status = "Other"
             }
             holderShipmentItemBinding.shipmentStatusValue.text = status
             holderShipmentItemBinding.shipmentSenderValue.text = shipmentItem.sender?.email

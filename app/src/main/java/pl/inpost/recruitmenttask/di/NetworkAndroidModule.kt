@@ -14,5 +14,6 @@ import pl.inpost.recruitmenttask.utils.ApiType
 class NetworkAndroidModule {
 
     @Provides
-    fun shipmentApi(@ApplicationContext context: Context, apiType: ApiType): ShipmentApi = MockShipmentApi(context, apiType)
+    fun shipmentApi(@ApplicationContext context: Context, apiType: ApiType): ShipmentApi =
+        MockShipmentApi(context, apiType)
 }

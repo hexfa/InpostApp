@@ -11,7 +11,8 @@ import pl.inpost.recruitmenttask.model.repository.ShipmentRepositoryDao
 
 @Module
 @InstallIn(
-    SingletonComponent::class)
+    SingletonComponent::class
+)
 class DatabaseModule {
 
     @Provides

@@ -6,6 +6,9 @@
     <string name="status_adopted_at_source_branch">Przyjęta w Oddziale</string>
     <string name="status_sent_from_source_branch">Wysłana z Oddziału</string>
     <string name="status_avizo">Powrót do Oddziału</string>
+    <string name="status_not_ready_smale_en">Not Ready</string>
+    <string name="status_not_ready">NOT READY</string>
+
     <string name="status_confirmed">W trakcie przygotowania</string>
     <string name="status_created">Przesyłka utworzona</string>
     <string name="status_delivered">Odebrana</string>
@@ -31,5 +34,20 @@
     <string name="number">Number</string>
     <string name="default_item">default</string>
     <string name="todo">TODO</string>
+    <string name="status_ready_to_pickup_smale_en">Ready to Pickup</string>
+    <string name="status_ready_to_pickup_en">READY TO PICKUP</string>
+
+    <string name="status_confirmed_en">CONFIRMED</string>
+    <string name="status_confirmed_smale_en">Confirmed</string>
+
+    <string name="status_out_for_delivery_smale_en">Out for Delivery</string>
+    <string name="status_out_for_delivery_en">OUT FOR DELIVERY</string>
+
+    <string name="status_avizo_en">AVIZO</string>
+    <string name="status_avizo_smale_en">Avizo</string>
+    <string name="status_sent_from_source_branch_en">SENT FROM SOURCE BRANCH</string>
+    <string name="status_sent_from_source_branch_smale_en">Sent from Source Branch</string>
+
+    <string name="status_other_en">Other</string>
 
 </resources>

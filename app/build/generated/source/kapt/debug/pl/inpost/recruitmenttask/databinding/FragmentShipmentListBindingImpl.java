@@ -39,7 +39,7 @@ public class FragmentShipmentListBindingImpl extends FragmentShipmentListBinding
         sViewsWithIds.put(R.id.recycler_shipment_pending, 23);
         sViewsWithIds.put(R.id.layout_filter, 24);
         sViewsWithIds.put(R.id.divider_filter_left, 25);
-        sViewsWithIds.put(R.id.divider_text_another, 26);
+        sViewsWithIds.put(R.id.divider_text_filter, 26);
         sViewsWithIds.put(R.id.divider_filter_right, 27);
         sViewsWithIds.put(R.id.recycler_filter, 28);
     }

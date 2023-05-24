@@ -2,8 +2,6 @@ package pl.inpost.recruitmenttask.view.activity
 
 import android.os.Build
 import android.os.Bundle
-import android.view.View
-import android.view.Window
 import android.view.WindowInsetsController
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -41,16 +39,13 @@ class HomeActivity : AppCompatActivity() {
                 WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
             )
         }
-        /*if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container, ShipmentListFragment.newInstance())
-                .commitNow()
-        }*/
+
     }
 
-    private fun bottomNavigation(){
+    private fun bottomNavigation() {
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController    }
+        val navController = navHostFragment.navController
+    }
 }

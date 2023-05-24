@@ -9,10 +9,10 @@ package pl.inpost.recruitmenttask.model.local
  * @param endOfWeekCollection - shipment will be available to pick up over the weekend - change colors
  */
 data class OperationsNetwork(
-    val manualArchive: Boolean,
-    val delete: Boolean,
-    val collect: Boolean,
-    val highlight: Boolean,
-    val expandAvizo: Boolean,
-    val endOfWeekCollection: Boolean
+    val delete: Boolean?,
+    val manualArchive: Boolean?,
+    val collect: Boolean?,
+    val highlight: Boolean?,
+    val expandAvizo: Boolean?,
+    val endOfWeekCollection: Boolean?
 )

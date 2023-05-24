@@ -1,5 +1,6 @@
 package pl.inpost.recruitmenttask.view.fragment
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.PopupMenu
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -73,6 +75,7 @@ class ShipmentListFragment : Fragment() {
         Log.d("ShipmentListFragment", "onViewCreated: " + "shipments")
 
         viewModel.getShipment().observe(requireActivity()) { shipments ->
+            viewModel.addItems(shipments)
             shipmentList.addAll(shipments.shipments)
             //ToDo list should be fill here *****************************************
             // *****************************************************************************************************
@@ -259,7 +262,7 @@ class ShipmentListFragment : Fragment() {
     private fun showNumberItem(shipments: List<ShipmentNetwork>) {
         val list = mutableListOf<ShipmentNetwork>()
         for (shipment in shipments) {
-            if (shipment.number?.equals("") == false) {
+            if (shipment.number != "") {
                 list.add(shipment)
             }
         }
@@ -299,6 +302,17 @@ class ShipmentListFragment : Fragment() {
 
     companion object {
         fun newInstance() = ShipmentListFragment()
+    }
+
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun sortItem(shipment: List<ShipmentNetwork>) {
+        val shipments: List<ShipmentNetwork> = shipment
+
+// Sort the shipments based on the expiryDate field in ascending order
+        val sortedShipments = shipments.sortedBy { shipmentItem ->
+            shipmentItem.expiryDate?.toEpochSecond() ?: 0L
+        }
     }
 
 }

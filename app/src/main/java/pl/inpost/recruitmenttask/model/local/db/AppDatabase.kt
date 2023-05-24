@@ -7,20 +7,15 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import pl.inpost.recruitmenttask.model.local.ShipmentNetwork
 import pl.inpost.recruitmenttask.model.local.db.dao.ShipmentNetworkDao
-import pl.inpost.recruitmenttask.utils.ApiType
 
-@Database(
-    entities = [ShipmentNetwork::class],
-    version = 1,
-    exportSchema = false
-)
+@Database(entities = [ShipmentNetwork::class], version = 1)
 @TypeConverters(TypeConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract val shipmentNetworkItemDao: ShipmentNetworkDao
 
     companion object {
 
-        private val DATABASE_NAME = "shipmentNetwork_database.db"
+        private const val DATABASE_NAME = "shipmentNetwork_database.db"
 
         @Volatile
         private var INSTANCE: AppDatabase? = null
