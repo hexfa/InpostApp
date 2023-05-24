@@ -275,7 +275,7 @@ class ShipmentListFragment() : Fragment(), ArchiveOnClick, CoroutineScope {
         val list = mutableListOf<ShipmentNetwork>()
         for (shipment in shipments) {
             if (shipment.expiryDate?.equals("") == false) {
-                Log.d(TAG, "showExpiryDateItem: $shipment")
+                //Log.d(TAG, "showExpiryDateItem: $shipment")
                 list.add(shipment)
             }
         }
@@ -317,13 +317,10 @@ class ShipmentListFragment() : Fragment(), ArchiveOnClick, CoroutineScope {
     }
 
     private fun showStatusOrderItem(shipments: List<ShipmentNetwork>) {
-        Log.d(TAG, "showStatusOrderItem: $shipments")
-
+        //Log.d(TAG, "showStatusOrderItem: $shipments")
         val sortedShipments = shipments.sortedBy { it.getShipmentStatus().ordinal }
         showFilterItem(sortedShipments)
-        Log.d(TAG, "showStatusOrderItem: $sortedShipments")
-
-
+        //Log.d(TAG, "showStatusOrderItem: $sortedShipments")
     }
 
 
@@ -333,7 +330,7 @@ class ShipmentListFragment() : Fragment(), ArchiveOnClick, CoroutineScope {
         binding?.layoutPickup?.visibility = View.GONE
         binding?.layoutInTransit?.visibility = View.GONE
         binding?.layoutFilter?.visibility = View.VISIBLE
-        Log.d(TAG, "showFilterItem: $shipment")
+        //Log.d(TAG, "showFilterItem: $shipment")
         if (shipment != null) {
             shipmentFilterItemAdapter?.addData(shipment)
         }

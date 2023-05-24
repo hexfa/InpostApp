@@ -19,10 +19,8 @@
     <string name="todo">TODO</string>
     <string name="status_ready_to_pickup_small">Ready to Pickup</string>
     <string name="status_ready_to_pickup_en">READY TO PICKUP</string>
-
     <string name="status_confirmed_en">CONFIRMED</string>
     <string name="status_confirmed_small">Confirmed</string>
-
     <string name="status_out_for_delivery_small">Out for Delivery</string>
     <string name="status_out_for_delivery_en">OUT FOR DELIVERY</string>
 
@@ -49,9 +47,5 @@
     <string name="status_avizo">Return to source branch</string>
     <string name="status_not_ready_small">Not Ready</string>
     <string name="status_not_ready">NOT READY</string>
-
-
-
-
 
 </resources>
