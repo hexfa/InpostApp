@@ -33,9 +33,9 @@ https://github.com/hexfa/InpostApp.git
 
 ## Resources ℹ️
 - #### Documents
-  **`For looking at the code document of this project, you could generate it from the`** [Dokka section][dokka].
+  **`For looking at the last document code version of this project, you can generate it by`** [Dokka section][dokka].
   
-  **`Also, you could see the last documentation of the project on this link`** [Documentation][doc]
+  **`Also, you can see the first document version of the project on this link`** [Documentation][doc]
 
 - #### Remote API
   ```bash
@@ -67,14 +67,9 @@ https://github.com/hexfa/InpostApp.git
 - Key password= inpost2023 
 - Key store password= inpost2023
 
-### Publish App 📱
-- Don't forget to update **versionCode** and **versionName** before uploading **.aab** file on Store.
-
-- [APK link][link]
-
-## Preview 🎞️
+## Preview 📱
   ### Image 🖼️
-  <img src="https://github.com/hexfa/Files/blob/main/ComingSoon.jpg" height="300" width="400" alt="Inpost App">
+  <img src="https://github.com/hexfa/Files/blob/main/InpostApp/Preview/Screenshot.jpg" height="649" width="300" alt="Inpost App">
   
   ### Video 📽️
   <img src="https://github.com/hexfa/Files/blob/main/ComingSoon.jpg" height="300" width="400" alt="Inpost App">
@@ -109,9 +104,8 @@ https://github.com/hexfa/InpostApp.git
    [git]: <https://upload.wikimedia.org/wikipedia/commons/5/57/Iconoir_github-outline.svg>
    [site]: <https://inpost.pl>
    [hexfa]: <https://github.com/hexfa>
-   [link]: <https://github.com/hexfa/>
    [dokka]: <#dokka>
-   [doc]: <https://github.com/hexfa/Files/InpostApp/Documents>
+   [doc]: <https://hexfa.com/my-git-doc/inpost/documents>
    [hilt]: <https://dagger.dev/hilt/>
    [coroutine]: <https://kotlinlang.org/docs/coroutines-guide.html>
    [live-data]: <https://developer.android.com/topic/libraries/architecture/livedata>
