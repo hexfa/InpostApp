@@ -18,12 +18,15 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:layout_width="196dp"
+            android:layout_width="wrap_content"
             android:layout_height="24dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
+            android:textColor="?attr/colorAccent"
             android:layout_centerHorizontal="true"
+            android:fontFamily="@font/montserrat_regular"
+
             android:layout_marginStart="20dp"
             android:gravity="center_vertical"
             android:lineSpacingExtra="6sp"

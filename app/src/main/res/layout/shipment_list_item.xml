@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:elevation="4dp"
         card_view:cardCornerRadius="8dp"
-        card_view:cardBackgroundColor="#FFFFFF"
+        card_view:cardBackgroundColor="?attr/cardBackgroundColor"
         card_view:cardUseCompatPadding="true"
         card_view:cardPreventCornerOverlap="false"
         card_view:cardMaxElevation="8dp">
@@ -17,18 +17,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/white"
+    card_view:cardBackgroundColor="?attr/cardBackgroundColor"
     android:layout_width="match_parent"
     android:layout_marginBottom="16dp"
     android:layout_height="wrap_content">
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/star_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:src="@drawable/star_icon"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/shipmentNumber_layout"
         android:layout_width="match_parent"
@@ -39,24 +32,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/star_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/star_icon"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@id/shipmentNumber_title"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/shipmentNumber_title"
             android:layout_width="wrap_content"
             android:layout_height="16dp"
             android:text="@string/number_of_parcel_en"
-            android:textColor="@color/gray"
+            android:textColor="?attr/colorAccent"
             android:textSize="11sp"
+            android:fontFamily="@font/montserrat_bold"
+
             app:layout_constraintBottom_toTopOf="@id/shipmentNumber_value"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/star_icon" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/shipmentNumber_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/gray_dark"
+            android:textColor="?attr/colorAccent"
             android:textSize="15sp"
+            android:fontFamily="@font/montserrat_regular"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/shipmentNumber_title"
             tools:text="12345678910" />
@@ -97,8 +101,9 @@
             android:layout_width="wrap_content"
             android:layout_height="16dp"
             android:text="@string/status"
-            android:textColor="@color/gray"
+            android:textColor="?attr/colorAccent"
             android:textSize="11sp"
+            android:fontFamily="@font/montserrat_bold"
             app:layout_constraintBottom_toTopOf="@id/shipmentStatus_value"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -107,9 +112,11 @@
             android:id="@+id/shipmentStatus_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/gray_dark"
+            android:textColor="?attr/colorAccent"
             android:textSize="15sp"
             android:textStyle="bold"
+            android:fontFamily="@font/montserrat_regular"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/shipmentStatus_title"
             tools:text="Gotowa do odbioru" />
@@ -132,8 +139,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sender"
-            android:textColor="@color/gray"
+            android:textColor="?attr/colorAccent"
             android:textSize="11sp"
+            android:fontFamily="@font/montserrat_bold"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -142,8 +151,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:textColor="@color/gray_dark"
+            android:textColor="?attr/colorAccent"
             android:textSize="15sp"
+            android:fontFamily="@font/montserrat_regular"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/shipmentSender_title"
@@ -163,7 +173,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/more"
-            android:textColor="@color/gray_dark"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="?attr/colorAccent"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@id/shipmentSender_value"
             app:layout_constraintEnd_toStartOf="@id/arrow"
