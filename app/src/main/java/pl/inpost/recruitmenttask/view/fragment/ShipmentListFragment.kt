@@ -179,7 +179,7 @@ class ShipmentListFragment() : Fragment(), ArchiveOnClick, CoroutineScope {
 
                 R.id.menu_status_order -> {
                     // Handle "status_order" menu item click
-                    showStatusOrderItem(shipmentList)
+                    showStatusOrderItem(shipmentListArchive)
 
                     true
                 }
