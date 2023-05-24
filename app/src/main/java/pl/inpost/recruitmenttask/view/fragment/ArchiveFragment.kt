@@ -47,7 +47,7 @@ class ArchiveFragment : Fragment(), ArchiveOnClick, CoroutineScope {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getShipmentOfLocal()
-        viewModel.shipmentNetworksLocal.observe(viewLifecycleOwner) {
+        viewModel.shipmentNetworksLocalLiveData.observe(viewLifecycleOwner) {
             shipmentListArchive.clear()
             it.forEach { shipment ->
                 if (shipment.operations?.manualArchive == true) {

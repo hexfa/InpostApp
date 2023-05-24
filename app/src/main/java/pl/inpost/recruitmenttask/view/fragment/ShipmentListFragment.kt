@@ -78,18 +78,21 @@ class ShipmentListFragment() : Fragment(), ArchiveOnClick, CoroutineScope {
         }
         binding?.swipeRefreshLayout?.setOnRefreshListener {
             // Perform your data refresh operation here
-            getShipment()
+            viewModel.getShipments()
+            viewModel.getShipmentOfLocal()
             // When the refresh is complete, call setRefreshing(false) to stop the loading indicator
             binding?.swipeRefreshLayout?.isRefreshing = false
         }
+        viewModel.getShipments()
         viewModel.getShipmentOfLocal()
         getShipment()
 
     }
 
     private fun getShipment() {
-        viewModel.getShipment().observe(requireActivity()) { shipments ->
-            viewModel.shipmentNetworksLocal.observe(viewLifecycleOwner) { list ->
+
+        viewModel.shipmentNetworksRemoteLiveData.observe(requireActivity()) { shipments ->
+            viewModel.shipmentNetworksLocalLiveData.observe(viewLifecycleOwner) { list ->
                 shipmentListArchive.clear()
                 shipmentItemPending.clear()
                 shipmentItemInProgress.clear()
