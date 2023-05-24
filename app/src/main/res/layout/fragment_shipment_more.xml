@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Number: 16730345345597442248333"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/expiryDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Expiry Date: 2022-11-29T04:56:07Z"
+        app:layout_constraintTop_toBottomOf="@id/number"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/storedDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stored Date: 2022-11-29T04:56:07Z"
+        app:layout_constraintTop_toBottomOf="@id/expiryDate"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/openCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Open Code: 987654"
+        app:layout_constraintTop_toBottomOf="@id/storedDate"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/shipmentType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Shipment Type: PARCEL_LOCKER"
+        app:layout_constraintTop_toBottomOf="@id/openCode"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status: READY_TO_PICKUP"
+        app:layout_constraintTop_toBottomOf="@id/shipmentType"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/sender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sender Email: sender@example.com"
+        app:layout_constraintTop_toBottomOf="@id/status"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/receiver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Receiver Email: receiver@example.com"
+        app:layout_constraintTop_toBottomOf="@id/sender"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

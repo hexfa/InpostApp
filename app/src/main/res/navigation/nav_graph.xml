@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/shipmentListFragment">
+
+    <fragment
+        android:id="@+id/shipmentListFragment"
+        android:name="pl.inpost.recruitmenttask.view.fragment.ShipmentListFragment"
+        android:label="fragment_shipment_list"
+        tools:layout="@layout/fragment_shipment_list" >
+        <action
+            android:id="@+id/action_shipmentListFragment_to_archiveFragment"
+            app:destination="@id/archiveFragment" />
+        <action
+            android:id="@+id/action_shipmentListFragment_to_shipmentMoreFragment"
+            app:destination="@id/shipmentMoreFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/archiveFragment"
+        android:name="pl.inpost.recruitmenttask.view.fragment.ArchiveFragment"
+        android:label="ArchiveFragment" >
+        <action
+            android:id="@+id/action_archiveFragment_to_shipmentMoreFragment"
+            app:destination="@id/shipmentMoreFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/shipmentMoreFragment"
+        android:name="pl.inpost.recruitmenttask.view.fragment.ShipmentMoreFragment"
+        android:label="fragment_shipment_more"
+        tools:layout="@layout/fragment_shipment_more" />
+</navigation>

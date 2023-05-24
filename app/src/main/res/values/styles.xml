@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="divider_tex">
+        <item name="android:textSize">13sp</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:textColor">#BBBDBF</item>
+    </style>
+    <style name="text">
+        <item name="android:textSize">15sp</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:textColor">#404041</item>
+    </style>
+</resources>

@@ -1,16 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/readyToPickupShipmentsMenu"
-        android:title="Gotowe do odbioru"
-        app:showAsAction="never" />
+        android:id="@+id/menu_default"
+        android:title="@string/default_item"
+        />
     <item
-        android:id="@+id/otherShipmentsMenu"
-        android:title="Pozostałe"
-        app:showAsAction="never" />
+        android:id="@+id/menu_expire_date"
+        android:title="@string/expiredate"
+        />
     <item
-        android:id="@+id/allShipmentsMenu"
-        android:title="Wszystkie"
-        app:showAsAction="never" />
+        android:id="@+id/menu_pickup_date"
+        android:title="@string/pickupDate"
+        />
+    <item
+        android:id="@+id/menu_sorted_item"
+        android:title="@string/sortedDate"
+        />
+    <item
+        android:id="@+id/menu_number"
+        android:title="@string/number"
+        />
+    <item
+        android:id="@+id/menu_status_order"
+        android:title="@string/status_order"
+        />
+
+
 </menu>
