@@ -12,7 +12,7 @@ import pl.inpost.recruitmenttask.databinding.ShipmentListItemBinding
 import pl.inpost.recruitmenttask.model.local.ShipmentNetwork
 import pl.inpost.recruitmenttask.model.local.ShipmentType
 
-internal class ShipmentItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+internal class ShipmentItemAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var mContext: Context
     private val shipmentItemList: MutableList<ShipmentNetwork> = ArrayList()
 
@@ -66,6 +66,13 @@ internal class ShipmentItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolde
             holderShipmentItemBinding.shipmentSenderValue.text = shipmentItem.sender?.email
             if (shipmentItem.shipmentType == ShipmentType.PARCEL_LOCKER.name) {
                 holderShipmentItemBinding.shipmentType.setImageResource(R.drawable.parcel_locker)
+            }
+
+            if (shipmentItem.operations?.highlight == true) {
+                holderShipmentItemBinding.starIcon.setImageResource(R.drawable.star_icon_yellow)
+            }else{
+                holderShipmentItemBinding.starIcon.setImageResource(R.drawable.star_icon)
+
             }
 
 
