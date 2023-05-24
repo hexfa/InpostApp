@@ -88,6 +88,9 @@ internal class ShipmentItemAdapter(val listener: ArchiveOnClick,val isArchivePag
             }
 
 
+            holderShipmentItemBinding.cardview.setOnClickListener {
+                listener.goToMoreFragment(shipmentItem)
+            }
         }
 
     }
@@ -96,4 +99,5 @@ internal class ShipmentItemAdapter(val listener: ArchiveOnClick,val isArchivePag
 
 interface ArchiveOnClick{
     fun clickListener(shipmentItem: ShipmentNetwork)
+    fun goToMoreFragment(shipmentItem: ShipmentNetwork)
 }

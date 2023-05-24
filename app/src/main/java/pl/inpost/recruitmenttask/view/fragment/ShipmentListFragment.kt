@@ -10,6 +10,7 @@ import android.widget.PopupMenu
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,7 +30,7 @@ private const val TAG = "ShipmentListFragment"
 @AndroidEntryPoint
 class ShipmentListFragment() : Fragment(), ArchiveOnClick, CoroutineScope {
 
-    private val viewModel: ShipmentListViewModel by viewModels()
+    private lateinit var viewModel:ShipmentListViewModel
     private var binding: FragmentShipmentListBinding? = null
     private var shipmentItemAdapterInTransit: ShipmentItemAdapter? = null
     private var shipmentItemAdapterPickup: ShipmentItemAdapter? = null
@@ -65,6 +66,7 @@ class ShipmentListFragment() : Fragment(), ArchiveOnClick, CoroutineScope {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(requireActivity())[ShipmentListViewModel::class.java]
 
         // Set the click listener for the menu button
         binding?.menuButton?.setOnClickListener {
@@ -377,6 +379,11 @@ class ShipmentListFragment() : Fragment(), ArchiveOnClick, CoroutineScope {
             )
         )
         viewModel.updateShipment(archiveShipment)
+    }
+
+    override fun goToMoreFragment(shipmentItem: ShipmentNetwork) {
+        viewModel.shipmentLiveData.value=shipmentItem
+        findNavController().navigate(R.id.action_shipmentListFragment_to_shipmentMoreFragment)
     }
 
     override val coroutineContext: CoroutineContext

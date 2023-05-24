@@ -7,9 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
+import pl.inpost.recruitmenttask.R
 import pl.inpost.recruitmenttask.databinding.FragmentArchiveBinding
 import pl.inpost.recruitmenttask.model.local.OperationsNetwork
 import pl.inpost.recruitmenttask.model.local.ShipmentNetwork
@@ -86,6 +88,11 @@ class ArchiveFragment : Fragment() ,ArchiveOnClick,CoroutineScope{
             )
         )
         viewModel.updateShipment(archiveShipment)
+    }
+
+    override fun goToMoreFragment(shipmentItem: ShipmentNetwork) {
+        viewModel.shipmentLiveData.value=shipmentItem
+        findNavController().navigate(R.id.action_archiveFragment_to_shipmentMoreFragment)
     }
 
     override val coroutineContext: CoroutineContext
