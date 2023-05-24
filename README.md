@@ -89,11 +89,16 @@ https://github.com/hexfa/InpostApp.git
 
 - [Junit][junit]: A popular unit testing framework for Java and Kotlin that provides a set of annotations and assertions for writing automated tests.
 
+- [Mockito][mockito]: A mocking framework for unit testing in Java and Kotlin that allows the creation of mock objects to simulate dependencies and behavior during testing.
+
 - [Room][room]: An SQLite database library for Android that provides an abstraction layer over SQLite and enables efficient database operations using annotations and generated code.
 
 - [Moshi][moshi]: A modern JSON parsing and serialization library for Kotlin and Java that makes it easy to convert JSON data to Kotlin/Java objects and vice versa.
 
-- [Mockito][mockito]: A mocking framework for unit testing in Java and Kotlin that allows the creation of mock objects to simulate dependencies and behavior during testing.
+- [Gson][gson]: Gson is a powerful JSON library that simplifies JSON parsing and serialization in Android through a flexible reflection-based approach.
+
+  ### 💡 Note 💡
+  Using both Moshi and Gson in an Android project offers the benefits of efficient code generation, support for Kotlin-specific features, and flexibility in handling different JSON structures and external dependencies. This ensures compatibility with a wider range of libraries and APIs, enhancing the overall flexibility and functionality of the application. Additionally, having both libraries available allows developers to choose the most appropriate one for each scenario, optimizing performance and convenience during JSON parsing and serialization tasks.
 
   ### 💡 Advice 💡
   In some cases, it may even be beneficial to use both **LiveData** and **Flow together**. You can use **Flow** for data processing and transformation in the   background, and then use **LiveData** to observe and update UI components based on the transformed data.
@@ -115,4 +120,5 @@ https://github.com/hexfa/InpostApp.git
    [junit]: <https://junit.org/>
    [room]: <https://developer.android.com/training/data-storage/room>
    [moshi]: <https://github.com/square/moshi>
+   [gson]: <https://github.com/google/gson>
    [mockito]: <https://site.mockito.org/>
