@@ -16,6 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import pl.inpost.recruitmenttask.R
 import pl.inpost.recruitmenttask.databinding.FragmentShipmentListBinding
 import pl.inpost.recruitmenttask.model.local.ShipmentNetwork
+import pl.inpost.recruitmenttask.model.local.ShipmentStatus
 import pl.inpost.recruitmenttask.view.adapter.ShipmentItemAdapter
 import pl.inpost.recruitmenttask.viewmodel.ShipmentListViewModel
 
@@ -150,6 +151,13 @@ class ShipmentListFragment : Fragment() {
 
                     true
                 }
+
+                R.id.menu_status_order -> {
+                    // Handle "status_order" menu item click
+                    showStatusOrderItem(shipmentList)
+
+                    true
+                }
                 // Add more menu item cases as needed
 
                 else -> false
@@ -268,6 +276,18 @@ class ShipmentListFragment : Fragment() {
         showFilterItem(list)
 
     }
+
+    private fun showStatusOrderItem(shipments: List<ShipmentNetwork>) {
+        Log.d(TAG, "showStatusOrderItem: $shipments")
+
+        val sortedShipments = shipments.sortedBy { it.getShipmentStatus().ordinal }
+        showFilterItem(sortedShipments)
+       Log.d(TAG, "showStatusOrderItem: $sortedShipments")
+
+
+    }
+
+
 
     private fun showFilterItem(shipment: List<ShipmentNetwork>?) {
         binding?.layoutInProgress?.visibility = View.GONE
