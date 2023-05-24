@@ -6,11 +6,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.PopupMenu
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import pl.inpost.recruitmenttask.R
@@ -31,8 +31,6 @@ class ShipmentListFragment : Fragment() {
     private var shipmentItemAdapterInProcess: ShipmentItemAdapter? = null
     private var shipmentItemAdapterPending: ShipmentItemAdapter? = null
     private var shipmentFilterItemAdapter: ShipmentItemAdapter? = null
-
-
     private var shipmentItemsInTransit = mutableListOf<ShipmentNetwork>()
     private var shipmentItemsPickup = mutableListOf<ShipmentNetwork>()
     private var shipmentItemInProgress = mutableListOf<ShipmentNetwork>()
@@ -61,17 +59,17 @@ class ShipmentListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val menuButton: ImageButton = view.findViewById(R.id.menu_button)
 
         // Set the click listener for the menu button
-        menuButton.setOnClickListener {
+        binding?.menuButton?.setOnClickListener {
             Log.d(TAG, "onViewCreated: " + "clicked")
-            showPopupMenu(menuButton)
+            showPopupMenu(it)
         }
+         binding?.archiveButton?.setOnClickListener {
 
+            findNavController().navigate(R.id.action_shipmentListFragment_to_archiveFragment)
 
-
-
+         }
         Log.d("ShipmentListFragment", "onViewCreated: " + "shipments")
 
         viewModel.getShipment().observe(requireActivity()) { shipments ->
@@ -79,8 +77,7 @@ class ShipmentListFragment : Fragment() {
                 viewModel.addItems(shipments)
             }
             shipments?.shipments?.let { shipmentList.addAll(it) }
-            //ToDo list should be fill here *****************************************
-            // *****************************************************************************************************
+
             shipments?.shipments?.forEach {
                 when (it.status) {
                     "OUT_FOR_DELIVERY" -> shipmentItemsInTransit.add(it)
@@ -302,9 +299,7 @@ class ShipmentListFragment : Fragment() {
     }
 
 
-    companion object {
-        fun newInstance() = ShipmentListFragment()
-    }
+
 
 
     @RequiresApi(Build.VERSION_CODES.O)

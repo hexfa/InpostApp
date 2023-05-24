@@ -9,5 +9,13 @@
         android:id="@+id/shipmentListFragment"
         android:name="pl.inpost.recruitmenttask.view.fragment.ShipmentListFragment"
         android:label="fragment_shipment_list"
-        tools:layout="@layout/fragment_shipment_list" />
+        tools:layout="@layout/fragment_shipment_list" >
+        <action
+            android:id="@+id/action_shipmentListFragment_to_archiveFragment"
+            app:destination="@id/archiveFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/archiveFragment"
+        android:name="pl.inpost.recruitmenttask.view.fragment.ArchiveFragment"
+        android:label="ArchiveFragment" />
 </navigation>

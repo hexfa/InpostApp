@@ -36,16 +36,25 @@
                 android:background="?android:attr/selectableItemBackground"
                 android:contentDescription="@string/todo"
                 android:src="@drawable/ic_menu" />
+            <ImageButton
+                android:id="@+id/archive_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/menu_button"
+                android:layout_marginEnd="16dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/ic_baseline_bookmark_24" />
 
             <TextView
                 android:layout_width="196dp"
                 android:layout_height="24dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="16dp"
                 android:gravity="center_vertical"
                 android:lineSpacingExtra="6sp"
                 android:text="@string/text"
