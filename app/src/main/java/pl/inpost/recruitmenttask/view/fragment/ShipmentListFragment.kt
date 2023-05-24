@@ -76,10 +76,23 @@ class ShipmentListFragment() : Fragment(), ArchiveOnClick, CoroutineScope {
             findNavController().navigate(R.id.action_shipmentListFragment_to_archiveFragment)
 
         }
+        binding?.swipeRefreshLayout?.setOnRefreshListener {
+            // Perform your data refresh operation here
+            viewModel.getShipments()
+            viewModel.getShipmentOfLocal()
+            // When the refresh is complete, call setRefreshing(false) to stop the loading indicator
+            binding?.swipeRefreshLayout?.isRefreshing = false
+        }
+        viewModel.getShipments()
         viewModel.getShipmentOfLocal()
+        getShipment()
 
-        viewModel.getShipment().observe(requireActivity()) { shipments ->
-            viewModel.shipmentNetworksLocal.observe(viewLifecycleOwner) { list ->
+    }
+
+    private fun getShipment() {
+
+        viewModel.shipmentNetworksRemoteLiveData.observe(requireActivity()) { shipments ->
+            viewModel.shipmentNetworksLocalLiveData.observe(viewLifecycleOwner) { list ->
                 shipmentListArchive.clear()
                 shipmentItemPending.clear()
                 shipmentItemInProgress.clear()
@@ -90,6 +103,9 @@ class ShipmentListFragment() : Fragment(), ArchiveOnClick, CoroutineScope {
                 if (list.isEmpty()) {
                     if (shipments != null) {
                         viewModel.addItems(shipments)
+                        runBlocking {
+                            viewModel.getShipmentOfLocal()
+                        }
                     }
                 } else {
                     list.let {
@@ -130,7 +146,6 @@ class ShipmentListFragment() : Fragment(), ArchiveOnClick, CoroutineScope {
 
 
         }
-
     }
 
     private fun showPopupMenu(anchorView: View) {
@@ -260,7 +275,7 @@ class ShipmentListFragment() : Fragment(), ArchiveOnClick, CoroutineScope {
         val list = mutableListOf<ShipmentNetwork>()
         for (shipment in shipments) {
             if (shipment.expiryDate?.equals("") == false) {
-                Log.d(TAG, "showExpiryDateItem: $shipment")
+                //Log.d(TAG, "showExpiryDateItem: $shipment")
                 list.add(shipment)
             }
         }
@@ -302,13 +317,10 @@ class ShipmentListFragment() : Fragment(), ArchiveOnClick, CoroutineScope {
     }
 
     private fun showStatusOrderItem(shipments: List<ShipmentNetwork>) {
-        Log.d(TAG, "showStatusOrderItem: $shipments")
-
+        //Log.d(TAG, "showStatusOrderItem: $shipments")
         val sortedShipments = shipments.sortedBy { it.getShipmentStatus().ordinal }
         showFilterItem(sortedShipments)
-        Log.d(TAG, "showStatusOrderItem: $sortedShipments")
-
-
+        //Log.d(TAG, "showStatusOrderItem: $sortedShipments")
     }
 
 
@@ -318,7 +330,7 @@ class ShipmentListFragment() : Fragment(), ArchiveOnClick, CoroutineScope {
         binding?.layoutPickup?.visibility = View.GONE
         binding?.layoutInTransit?.visibility = View.GONE
         binding?.layoutFilter?.visibility = View.VISIBLE
-        Log.d(TAG, "showFilterItem: $shipment")
+        //Log.d(TAG, "showFilterItem: $shipment")
         if (shipment != null) {
             shipmentFilterItemAdapter?.addData(shipment)
         }
@@ -378,7 +390,7 @@ class ShipmentListFragment() : Fragment(), ArchiveOnClick, CoroutineScope {
     }
 
     override fun goToMoreFragment(shipmentItem: ShipmentNetwork) {
-        viewModel.shipmentLiveData.value = shipmentItem
+        viewModel.shipmenDetailLiveData.value = shipmentItem
         findNavController().navigate(R.id.action_shipmentListFragment_to_shipmentMoreFragment)
     }
 

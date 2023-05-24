@@ -20,6 +20,7 @@ The user interface of the app is designed to be simple and efficient, enabling u
 - Sorting by: Status, PickupDate, ExpireDate, StoredDate, Number
 - Pull to refresh
 - Local database
+- Simple dark mode style
 - UnitTest
 - Modern strcuture
 - Modern libraries
@@ -68,11 +69,11 @@ https://github.com/hexfa/InpostApp.git
 - Key store password= inpost2023
 
 ## Preview 📱
-  ### Image 🖼️
-  <img src="https://github.com/hexfa/Files/blob/main/InpostApp/Preview/Screenshot.jpg" height="649" width="300" alt="Inpost App">
+  ### Images 🖼️
+  <img src="https://github.com/hexfa/Files/blob/main/InpostApp/Preview/Screenshot.png" height="649" width="300" alt="Inpost App hexfa">         <img src="https://github.com/hexfa/Files/blob/main/InpostApp/Preview/Screenshot-light.png" height="649" width="300" alt="Inpost App amir">
   
   ### Video 📽️
-  <img src="https://github.com/hexfa/Files/blob/main/ComingSoon.jpg" height="300" width="400" alt="Inpost App">
+  <img src="https://github.com/hexfa/Files/blob/main/InpostApp/Preview/video.gif" height="649" width="300" alt="Inpost App dehdarian fallah">
 
 ## Built With 🛠
 - [Kotlin][kotlin]: A modern and concise programming language for Android development.

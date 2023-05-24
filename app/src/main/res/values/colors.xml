@@ -8,8 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#929497</color>
-    <color name="gray_dark">#404041</color>
+    <color name="card">#404041</color>
     <color name="background">#F2F2F2</color>
+    <color name="gray_dark">#303030 </color>
     <color name="loading_background">#81514D</color>
     <color name="yellow">#FFCD00</color>
 </resources>

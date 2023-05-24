@@ -17,29 +17,33 @@ class ShipmentListViewModel @Inject constructor(
     private val shipmentRepository: ShipmentRepository,
     private val shipmentRepositoryDao: ShipmentRepositoryDao
 ) : ViewModel() {
-    val shipmentNetworksLocal: MutableLiveData<List<ShipmentNetwork>> = MutableLiveData()
-    val shipmentLiveData: MutableLiveData<ShipmentNetwork> = MutableLiveData()
+    val shipmentNetworksLocalLiveData: MutableLiveData<List<ShipmentNetwork>> = MutableLiveData()
+    val shipmenDetailLiveData: MutableLiveData<ShipmentNetwork> = MutableLiveData()
 
     init {
         refreshData()
     }
 
-    val shipmentItemList = MutableLiveData<ShipmentsResponse?>()
+    val shipmentNetworksRemoteLiveData = MutableLiveData<ShipmentsResponse?>()
 
     fun getShipment() = liveData(Dispatchers.IO) {
         try {
-            emitSource(shipmentItemList) // Emit current MutableLiveData
+            emitSource(shipmentNetworksRemoteLiveData) // Emit current MutableLiveData
 
             val response = shipmentRepository.getShipments() // suspend function call
 
             // Update the live data with the response
-            shipmentItemList.postValue(response)
+            shipmentNetworksRemoteLiveData.postValue(response)
         } catch (e: Exception) {
             // Handle any exceptions and log errors
             Log.e(TAG, "Exception: ${e.message}")
         }
     }
-
+    fun getShipments() {
+        viewModelScope.launch(Dispatchers.IO) {
+            shipmentNetworksRemoteLiveData.postValue(shipmentRepository.getShipments() )
+        }
+    }
     fun addItems(shipmentItems: ShipmentsResponse) {
         viewModelScope.launch(Dispatchers.IO) {
             shipmentRepositoryDao.insertItems(shipmentItems)
@@ -48,8 +52,7 @@ class ShipmentListViewModel @Inject constructor(
 
     fun getShipmentOfLocal() {
         viewModelScope.launch(Dispatchers.IO) {
-            shipmentNetworksLocal.postValue(shipmentRepositoryDao.getAllItem())
-            runBlocking { }
+            shipmentNetworksLocalLiveData.postValue(shipmentRepositoryDao.getAllItem())
         }
 
 
