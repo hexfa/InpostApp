@@ -1,28 +1,20 @@
 package pl.inpost.recruitmenttask.viewmodel
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.reactivex.SingleObserver
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import pl.inpost.recruitmenttask.model.local.ShipmentNetwork
 import pl.inpost.recruitmenttask.model.local.ShipmentsResponse
 import pl.inpost.recruitmenttask.model.repository.ShipmentRepository
 import pl.inpost.recruitmenttask.model.repository.ShipmentRepositoryDao
 import javax.inject.Inject
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
 
 const val TAG = "ShipmentListViewModel"
 
@@ -30,13 +22,13 @@ const val TAG = "ShipmentListViewModel"
 class ShipmentListViewModel @Inject constructor(
     private val shipmentRepository: ShipmentRepository,
     private val shipmentRepositoryDao: ShipmentRepositoryDao
-) : BaseViewModel() {
+) : ViewModel() {
 
     init {
         refreshData()
     }
 
-    fun getShipment(): LiveData<ShipmentsResponse> {
+  /*  fun getShipment(): LiveData<ShipmentsResponse> {
         val shipmentItemList = MutableLiveData<ShipmentsResponse>()
 
         // Use coroutine scope for suspending function calls
@@ -75,8 +67,22 @@ class ShipmentListViewModel @Inject constructor(
         }
 
         return shipmentItemList
-    }
+    }*/
+    val shipmentItemList = MutableLiveData<ShipmentsResponse?>()
 
+    fun getShipment() = liveData(Dispatchers.IO) {
+        try {
+            emitSource(shipmentItemList) // Emit current MutableLiveData
+
+            val response = shipmentRepository.getShipments() // suspend function call
+
+            // Update the live data with the response
+            shipmentItemList.postValue(response)
+        } catch (e: Exception) {
+            // Handle any exceptions and log errors
+            Log.e(TAG, "Exception: ${e.message}")
+        }
+    }
 
     fun addItems(shipmentItems: ShipmentsResponse) {
         viewModelScope.launch(Dispatchers.IO) {

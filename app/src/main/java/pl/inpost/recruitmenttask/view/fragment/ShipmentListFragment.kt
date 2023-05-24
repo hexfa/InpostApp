@@ -75,11 +75,13 @@ class ShipmentListFragment : Fragment() {
         Log.d("ShipmentListFragment", "onViewCreated: " + "shipments")
 
         viewModel.getShipment().observe(requireActivity()) { shipments ->
-            viewModel.addItems(shipments)
-            shipmentList.addAll(shipments.shipments)
+            if (shipments != null) {
+                viewModel.addItems(shipments)
+            }
+            shipments?.shipments?.let { shipmentList.addAll(it) }
             //ToDo list should be fill here *****************************************
             // *****************************************************************************************************
-            shipments.shipments.forEach {
+            shipments?.shipments?.forEach {
                 when (it.status) {
                     "OUT_FOR_DELIVERY" -> shipmentItemsInTransit.add(it)
                     "RETURNED_TO_SENDER" -> shipmentItemsInTransit.add(it)

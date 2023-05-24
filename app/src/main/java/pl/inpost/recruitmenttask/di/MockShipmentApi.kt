@@ -4,7 +4,6 @@ import android.content.Context
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.hilt.android.qualifiers.ApplicationContext
-import io.reactivex.Single
 import pl.inpost.recruitmenttask.R
 import pl.inpost.recruitmenttask.model.api.ShipmentApi
 import pl.inpost.recruitmenttask.model.local.CustomerNetwork
@@ -58,10 +57,14 @@ class MockShipmentApi(
         endOfWeekCollection = endOfWeekCollection
     )
 
-
-    override fun getShipments(): Single<ShipmentsResponse> {
-        val shipments = response
-        return Single.just(shipments)
+    override suspend fun getShipments(): ShipmentsResponse {
+        return response
     }
+
+
+//    override fun getShipments(): Single<ShipmentsResponse> {
+//        val shipments = response
+//        return Single.just(shipments)
+//    }
 
 }
