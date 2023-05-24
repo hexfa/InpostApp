@@ -76,8 +76,6 @@ https://github.com/hexfa/InpostApp.git
 
 ## Built With 🛠
 - [Kotlin][kotlin]: A modern and concise programming language for Android development.
- 
-- [Jetpack][jetpack]: Jetpack is a suite of libraries to help with app development and reduce boilerplate code. Using modern design practices, Jetpack libraries enable fewer crashes and memory leaks.
 
 - [Coroutine][coroutine]: A Kotlin library that simplifies asynchronous programming and enables the writing of asynchronous code in a sequential manner.
 
@@ -116,7 +114,6 @@ https://github.com/hexfa/InpostApp.git
    [live-data]: <https://developer.android.com/topic/libraries/architecture/livedata>
    [dokka-site]: <https://kotlinlang.org/docs/dokka-gradle.html>
    [kotlin]: <https://kotlinlang.org/>
-   [jetpack]: <https://developer.android.com/jetpack>
    [junit]: <https://junit.org/>
    [room]: <https://developer.android.com/training/data-storage/room>
    [moshi]: <https://github.com/square/moshi>
