@@ -1,23 +1,6 @@
 <resources>
     <string name="app_name">InPost Recruitment Task</string>
 
-    <string name="status_adopted_at_sorting_center">Przyjęta w Sortowni</string>
-    <string name="status_sent_from_sorting_center">Wysłana z Sortowni</string>
-    <string name="status_adopted_at_source_branch">Przyjęta w Oddziale</string>
-    <string name="status_sent_from_source_branch">Wysłana z Oddziału</string>
-    <string name="status_avizo">Powrót do Oddziału</string>
-    <string name="status_not_ready_smale_en">Not Ready</string>
-    <string name="status_not_ready">NOT READY</string>
-
-    <string name="status_confirmed">W trakcie przygotowania</string>
-    <string name="status_created">Przesyłka utworzona</string>
-    <string name="status_delivered">Odebrana</string>
-    <string name="status_other">Inny status</string>
-    <string name="status_out_for_delivery">Wydana do doręczenia</string>
-    <string name="status_pickup_time_expired">Upłynął termin odbioru</string>
-    <string name="status_ready_to_pickup">Gotowa do odbioru</string>
-    <string name="status_returned_to_sender">Zwrot do Nadawcy</string>
-    <string name="number_of_parcel">NR PRZESYŁKI</string>
     <string name="number_of_parcel_en">Number of parcel</string>
     <string name="status">Status</string>
     <string name="sender">Sender</string>
@@ -34,23 +17,41 @@
     <string name="number">Number</string>
     <string name="default_item">default</string>
     <string name="todo">TODO</string>
-    <string name="status_ready_to_pickup_smale_en">Ready to Pickup</string>
+    <string name="status_ready_to_pickup_small">Ready to Pickup</string>
     <string name="status_ready_to_pickup_en">READY TO PICKUP</string>
 
     <string name="status_confirmed_en">CONFIRMED</string>
-    <string name="status_confirmed_smale_en">Confirmed</string>
+    <string name="status_confirmed_small">Confirmed</string>
 
-    <string name="status_out_for_delivery_smale_en">Out for Delivery</string>
+    <string name="status_out_for_delivery_small">Out for Delivery</string>
     <string name="status_out_for_delivery_en">OUT FOR DELIVERY</string>
 
-    <string name="status_avizo_en">AVIZO</string>
-    <string name="status_avizo_smale_en">Avizo</string>
+    <string name="status_avizo_en">Back to the Branch</string>
+    <string name="status_avizo_small">Back to the Branch</string>
     <string name="status_sent_from_source_branch_en">SENT FROM SOURCE BRANCH</string>
-    <string name="status_sent_from_source_branch_smale_en">Sent from Source Branch</string>
+    <string name="status_sent_from_source_branch_small">Sent from Source Branch</string>
 
     <string name="status_other_en">Other</string>
     <string name="status_order">Status Order</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="status_confirmed">Being prepared</string>
+    <string name="status_created">Shipment created</string>
+    <string name="status_delivered">Delivered</string>
+    <string name="status_other">Other status</string>
+    <string name="status_out_for_delivery">Out for delivery</string>
+    <string name="status_pickup_time_expired">Pickup time expired</string>
+    <string name="status_ready_to_pickup">Ready for pickup</string>
+    <string name="status_returned_to_sender">Returned to sender</string>
+    <string name="number_of_parcel">Parcel number</string>
+    <string name="status_adopted_at_sorting_center">Adopted at sorting center</string>
+    <string name="status_sent_from_sorting_center">Sent from sorting center</string>
+    <string name="status_adopted_at_source_branch">Adopted at source branch</string>
+    <string name="status_sent_from_source_branch">Sent from source branch</string>
+    <string name="status_avizo">Return to source branch</string>
+    <string name="status_not_ready_small">Not Ready</string>
+    <string name="status_not_ready">NOT READY</string>
+
+
+
+
 
 </resources>
