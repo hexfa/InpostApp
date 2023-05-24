@@ -9,6 +9,21 @@ This Android project is a simple and lightweight application that allows users t
 
 The user interface of the app is designed to be simple and efficient, enabling users to effortlessly browse through the list of shipments and check their status. Additionally, users will be able to view the status of multiple shipments simultaneously, staying informed about the progress and latest updates of each shipment. The app aims to provide a user-friendly and cost-effective solution for users to conveniently track their shipments.
 
+## Features 🚩
+
+- Shipment list
+- Parcel more details
+- Archivement
+- Archive list
+- Rotatable
+- Highlight parcels
+- Sorting by: Status, PickupDate, ExpireDate, StoredDate, Number
+- Pull to refresh
+- Local database
+- UnitTest
+- Modern strcuture
+- Modern libraries
+
 ## Lets Start 🕺
 
 Clone this repository and import it into your **Android IDE**
