@@ -13,16 +13,20 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.*
 import pl.inpost.recruitmenttask.R
 import pl.inpost.recruitmenttask.databinding.FragmentShipmentListBinding
+import pl.inpost.recruitmenttask.model.local.OperationsNetwork
 import pl.inpost.recruitmenttask.model.local.ShipmentNetwork
+import pl.inpost.recruitmenttask.view.adapter.ArchiveOnClick
 import pl.inpost.recruitmenttask.view.adapter.ShipmentItemAdapter
 import pl.inpost.recruitmenttask.viewmodel.ShipmentListViewModel
+import kotlin.coroutines.CoroutineContext
 
 private const val TAG = "ShipmentListFragment"
 
 @AndroidEntryPoint
-class ShipmentListFragment : Fragment() {
+class ShipmentListFragment() : Fragment(), ArchiveOnClick, CoroutineScope {
 
     private val viewModel: ShipmentListViewModel by viewModels()
     private var binding: FragmentShipmentListBinding? = null
@@ -35,15 +39,16 @@ class ShipmentListFragment : Fragment() {
     private var shipmentItemsPickup = mutableListOf<ShipmentNetwork>()
     private var shipmentItemInProgress = mutableListOf<ShipmentNetwork>()
     private var shipmentItemPending = mutableListOf<ShipmentNetwork>()
-    private var shipmentList = mutableListOf<ShipmentNetwork>()
+    private var shipmentListFilter = mutableListOf<ShipmentNetwork>()
+    private var shipmentListArchive = mutableListOf<ShipmentNetwork>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        shipmentItemAdapterInTransit = ShipmentItemAdapter()
-        shipmentItemAdapterPickup = ShipmentItemAdapter()
-        shipmentItemAdapterInProcess = ShipmentItemAdapter()
-        shipmentItemAdapterPending = ShipmentItemAdapter()
-        shipmentFilterItemAdapter = ShipmentItemAdapter()
+        shipmentItemAdapterInTransit = ShipmentItemAdapter(this, false)
+        shipmentItemAdapterPickup = ShipmentItemAdapter(this, false)
+        shipmentItemAdapterInProcess = ShipmentItemAdapter(this, false)
+        shipmentItemAdapterPending = ShipmentItemAdapter(this, false)
+        shipmentFilterItemAdapter = ShipmentItemAdapter(this, false)
 
     }
 
@@ -65,46 +70,67 @@ class ShipmentListFragment : Fragment() {
             Log.d(TAG, "onViewCreated: " + "clicked")
             showPopupMenu(it)
         }
-         binding?.archiveButton?.setOnClickListener {
+        binding?.archiveButton?.setOnClickListener {
 
             findNavController().navigate(R.id.action_shipmentListFragment_to_archiveFragment)
 
-         }
-        Log.d("ShipmentListFragment", "onViewCreated: " + "shipments")
+        }
+        viewModel.getShipmentOfLocal()
 
         viewModel.getShipment().observe(requireActivity()) { shipments ->
-            if (shipments != null) {
-                viewModel.addItems(shipments)
-            }
-            shipments?.shipments?.let { shipmentList.addAll(it) }
+            viewModel.shipmentNetworksLocal.observe(viewLifecycleOwner){list->
+                shipmentListArchive.clear()
+                shipmentItemPending.clear()
+                shipmentItemInProgress.clear()
+                shipmentItemsInTransit.clear()
+                shipmentItemsPickup.clear()
+                shipmentListFilter.clear()
 
-            shipments?.shipments?.forEach {
-                when (it.status) {
-                    "OUT_FOR_DELIVERY" -> shipmentItemsInTransit.add(it)
-                    "RETURNED_TO_SENDER" -> shipmentItemsInTransit.add(it)
-                    "SENT_FROM_SOURCE_BRANCH" -> shipmentItemsInTransit.add(it)
-                    "READY_TO_PICKUP" -> shipmentItemsPickup.add(it)
-                    "DELIVERED" -> shipmentItemsPickup.add(it)
-                    "CONFIRMED" -> shipmentItemInProgress.add(it)
-                    "ADOPTED_AT_SOURCE_BRANCH" -> shipmentItemInProgress.add(it)
-                    "CREATED" -> shipmentItemInProgress.add(it)
-                    "SENT_FROM_SOURCE_BRANCH" -> shipmentItemInProgress.add(it)
-                    "AVIZO" -> shipmentItemPending.add(it)
-                    "NOT_READY" -> shipmentItemPending.add(it)
+                if (list.isEmpty()){
+                    if (shipments != null) {
+                        viewModel.addItems(shipments)
+                    }
+                }else{
+                    list.let {
+                        shipmentListFilter.addAll(it)
+                    }
+                    list.forEach {
+                        if (it.operations?.manualArchive == false) {
+                            shipmentListArchive.add(it)
+                        }
+                    }
 
-                    else -> shipmentItemPending.add(it)
+                    shipmentListArchive.forEach {
+                        when (it.status) {
+                            "OUT_FOR_DELIVERY" -> shipmentItemsInTransit.add(it)
+                            "RETURNED_TO_SENDER" -> shipmentItemsInTransit.add(it)
+                            "SENT_FROM_SOURCE_BRANCH" -> shipmentItemsInTransit.add(it)
+                            "READY_TO_PICKUP" -> shipmentItemsPickup.add(it)
+                            "DELIVERED" -> shipmentItemsPickup.add(it)
+                            "CONFIRMED" -> shipmentItemInProgress.add(it)
+                            "ADOPTED_AT_SOURCE_BRANCH" -> shipmentItemInProgress.add(it)
+                            "CREATED" -> shipmentItemInProgress.add(it)
+                            "SENT_FROM_SOURCE_BRANCH" -> shipmentItemInProgress.add(it)
+                            "AVIZO" -> shipmentItemPending.add(it)
+                            "NOT_READY" -> shipmentItemPending.add(it)
 
+                            else -> shipmentItemPending.add(it)
+
+                        }
+                    }
+                    setUpAdapter(
+                        shipmentItemsInTransit,
+                        shipmentItemsPickup,
+                        shipmentItemInProgress,
+                        shipmentItemPending
+                    )
                 }
             }
 
 
-            setUpAdapter(
-                shipmentItemsInTransit,
-                shipmentItemsPickup,
-                shipmentItemInProgress,
-                shipmentItemPending
-            )
+
         }
+
     }
 
     private fun showPopupMenu(anchorView: View) {
@@ -114,15 +140,14 @@ class ShipmentListFragment : Fragment() {
         popupMenu.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.menu_expire_date -> {
-                    Log.d(TAG, "showPopupMenu: $shipmentList")
-                    showExpiryDateItem(shipmentList)
+                    showExpiryDateItem(shipmentListArchive)
                     true
                     // Handle "Expire Date" menu item click
                 }
 
                 R.id.menu_pickup_date -> {
                     // Handle "Pickup Date" menu item click
-                    showPickUpDateItem(shipmentList)
+                    showPickUpDateItem(shipmentListArchive)
 
                     true
 
@@ -130,7 +155,7 @@ class ShipmentListFragment : Fragment() {
 
                 R.id.menu_sorted_item -> {
                     // Handle "Sorted Item" menu item click
-                    showStoredDateItem(shipmentList)
+                    showStoredDateItem(shipmentListArchive)
                     true
 
 
@@ -138,7 +163,7 @@ class ShipmentListFragment : Fragment() {
 
                 R.id.menu_number -> {
                     // Handle "Number" menu item click
-                    showNumberItem(shipmentList)
+                    showNumberItem(shipmentListArchive)
                     true
 
 
@@ -228,7 +253,6 @@ class ShipmentListFragment : Fragment() {
         val list = mutableListOf<ShipmentNetwork>()
         for (shipment in shipments) {
             if (shipment.expiryDate?.equals("") == false) {
-                Log.d(TAG, "showExpiryDateItem: $shipment")
                 list.add(shipment)
             }
         }
@@ -275,7 +299,6 @@ class ShipmentListFragment : Fragment() {
         binding?.layoutPickup?.visibility = View.GONE
         binding?.layoutInTransit?.visibility = View.GONE
         binding?.layoutFilter?.visibility = View.VISIBLE
-        Log.d(TAG, "showFilterItem: $shipment")
         if (shipment != null) {
             shipmentFilterItemAdapter?.addData(shipment)
         }
@@ -299,9 +322,6 @@ class ShipmentListFragment : Fragment() {
     }
 
 
-
-
-
     @RequiresApi(Build.VERSION_CODES.O)
     fun sortItem(shipment: List<ShipmentNetwork>) {
         val shipments: List<ShipmentNetwork> = shipment
@@ -311,5 +331,33 @@ class ShipmentListFragment : Fragment() {
             shipmentItem.expiryDate?.toEpochSecond() ?: 0L
         }
     }
+
+    override fun clickListener(shipmentItem: ShipmentNetwork) {
+        val archiveShipment = ShipmentNetwork(
+            shipmentItem.id,
+            shipmentItem.number,
+            shipmentItem.expiryDate,
+            shipmentItem.storedDate,
+            shipmentItem.pickUpDate,
+            shipmentItem.openCode,
+            shipmentItem.shipmentType,
+            shipmentItem.status,
+            shipmentItem.eventLog,
+            shipmentItem.sender,
+            shipmentItem.receiver,
+            OperationsNetwork(
+                shipmentItem.operations?.delete,
+                true,
+                shipmentItem.operations?.collect,
+                shipmentItem.operations?.highlight,
+                shipmentItem.operations?.expandAvizo,
+                shipmentItem.operations?.endOfWeekCollection
+            )
+        )
+        viewModel.updateShipment(archiveShipment)
+    }
+
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.IO
 
 }

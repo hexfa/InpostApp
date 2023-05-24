@@ -11,8 +11,8 @@ import java.time.ZonedDateTime
 
 data class ShipmentNetwork(
 
-    @PrimaryKey
     var id: Int = 0,
+    @PrimaryKey
     val number: String,
     val expiryDate: ZonedDateTime?,
     val storedDate: ZonedDateTime?,

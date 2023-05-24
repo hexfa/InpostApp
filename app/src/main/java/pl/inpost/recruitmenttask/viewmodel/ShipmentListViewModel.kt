@@ -1,15 +1,9 @@
 package pl.inpost.recruitmenttask.viewmodel
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import pl.inpost.recruitmenttask.model.local.ShipmentNetwork
 import pl.inpost.recruitmenttask.model.local.ShipmentsResponse
 import pl.inpost.recruitmenttask.model.repository.ShipmentRepository
@@ -23,51 +17,52 @@ class ShipmentListViewModel @Inject constructor(
     private val shipmentRepository: ShipmentRepository,
     private val shipmentRepositoryDao: ShipmentRepositoryDao
 ) : ViewModel() {
+    val shipmentNetworksLocal: MutableLiveData<List<ShipmentNetwork>> = MutableLiveData()
 
     init {
         refreshData()
     }
 
-  /*  fun getShipment(): LiveData<ShipmentsResponse> {
-        val shipmentItemList = MutableLiveData<ShipmentsResponse>()
+    /*  fun getShipment(): LiveData<ShipmentsResponse> {
+          val shipmentItemList = MutableLiveData<ShipmentsResponse>()
 
-        // Use coroutine scope for suspending function calls
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val response = withContext(Dispatchers.IO) {
-                    suspendCoroutine { continuation ->
-                        shipmentRepository.getShipments()
-                            ?.subscribeOn(Schedulers.io())
-                            ?.observeOn(AndroidSchedulers.mainThread())
-                            ?.subscribe(object : SingleObserver<ShipmentsResponse> {
-                                override fun onSubscribe(d: Disposable) {
-                                    compositeDisposable.add(d)
-                                    Log.e(TAG, "onSubscribe: ")
-                                }
+          // Use coroutine scope for suspending function calls
+          CoroutineScope(Dispatchers.IO).launch {
+              try {
+                  val response = withContext(Dispatchers.IO) {
+                      suspendCoroutine { continuation ->
+                          shipmentRepository.getShipments()
+                              ?.subscribeOn(Schedulers.io())
+                              ?.observeOn(AndroidSchedulers.mainThread())
+                              ?.subscribe(object : SingleObserver<ShipmentsResponse> {
+                                  override fun onSubscribe(d: Disposable) {
+                                      compositeDisposable.add(d)
+                                      Log.e(TAG, "onSubscribe: ")
+                                  }
 
-                                override fun onError(e: Throwable) {
-                                    continuation.resumeWithException(e)
-                                    Log.e(TAG, "onError: ")
-                                }
+                                  override fun onError(e: Throwable) {
+                                      continuation.resumeWithException(e)
+                                      Log.e(TAG, "onError: ")
+                                  }
 
-                                override fun onSuccess(t: ShipmentsResponse) {
-                                    continuation.resume(t)
-                                    Log.e(TAG, "onSuccess: ")
-                                }
-                            })
-                    }
-                }
+                                  override fun onSuccess(t: ShipmentsResponse) {
+                                      continuation.resume(t)
+                                      Log.e(TAG, "onSuccess: ")
+                                  }
+                              })
+                      }
+                  }
 
-                // Update the live data with the response
-                shipmentItemList.postValue(response)
-            } catch (e: Exception) {
-                // Handle any exceptions and log errors
-                Log.e(TAG, "Exception: ${e.message}")
-            }
-        }
+                  // Update the live data with the response
+                  shipmentItemList.postValue(response)
+              } catch (e: Exception) {
+                  // Handle any exceptions and log errors
+                  Log.e(TAG, "Exception: ${e.message}")
+              }
+          }
 
-        return shipmentItemList
-    }*/
+          return shipmentItemList
+      }*/
     val shipmentItemList = MutableLiveData<ShipmentsResponse?>()
 
     fun getShipment() = liveData(Dispatchers.IO) {
@@ -87,6 +82,21 @@ class ShipmentListViewModel @Inject constructor(
     fun addItems(shipmentItems: ShipmentsResponse) {
         viewModelScope.launch(Dispatchers.IO) {
             shipmentRepositoryDao.insertItems(shipmentItems)
+        }
+    }
+
+     fun getShipmentOfLocal() {
+         viewModelScope.launch (Dispatchers.IO){
+             shipmentNetworksLocal.postValue(shipmentRepositoryDao.getAllItem())
+             runBlocking {  }
+         }
+
+
+    }
+
+    fun updateShipment(shipmentItem: ShipmentNetwork) {
+        viewModelScope.launch(Dispatchers.IO) {
+            shipmentRepositoryDao.updateItem(shipmentItem)
         }
     }
 

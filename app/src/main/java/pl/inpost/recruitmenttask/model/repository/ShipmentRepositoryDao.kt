@@ -9,7 +9,7 @@ class ShipmentRepositoryDao@Inject
 constructor(
     private val dao: ShipmentNetworkDao
 ) {
-    suspend fun getAllItem() = dao.getAllShipments()
+    suspend fun getAllItem():List<ShipmentNetwork> = dao.getAllShipments()
 
     fun updateItem(shipmentItem: ShipmentNetwork) = dao.update(shipmentItem)
 
