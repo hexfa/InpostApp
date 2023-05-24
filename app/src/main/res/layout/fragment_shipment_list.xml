@@ -77,6 +77,14 @@
             app:layout_constraintBottom_toBottomOf="@id/header"
             app:layout_constraintStart_toStartOf="@id/header"
             app:layout_constraintTop_toTopOf="@id/header" />
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header">
+
+            <!-- Your scrollable content here -->
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -374,6 +382,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

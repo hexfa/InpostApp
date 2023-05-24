@@ -91,7 +91,7 @@ class ArchiveFragment : Fragment(), ArchiveOnClick, CoroutineScope {
     }
 
     override fun goToMoreFragment(shipmentItem: ShipmentNetwork) {
-        viewModel.shipmentLiveData.value = shipmentItem
+        viewModel.shipmenDetailLiveData.value = shipmentItem
         findNavController().navigate(R.id.action_archiveFragment_to_shipmentMoreFragment)
     }
 

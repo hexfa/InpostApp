@@ -18,7 +18,7 @@ class ShipmentListViewModel @Inject constructor(
     private val shipmentRepositoryDao: ShipmentRepositoryDao
 ) : ViewModel() {
     val shipmentNetworksLocal: MutableLiveData<List<ShipmentNetwork>> = MutableLiveData()
-    val shipmentLiveData: MutableLiveData<ShipmentNetwork> = MutableLiveData()
+    val shipmenDetailLiveData: MutableLiveData<ShipmentNetwork> = MutableLiveData()
 
     init {
         refreshData()

@@ -76,8 +76,18 @@ class ShipmentListFragment() : Fragment(), ArchiveOnClick, CoroutineScope {
             findNavController().navigate(R.id.action_shipmentListFragment_to_archiveFragment)
 
         }
+        binding?.swipeRefreshLayout?.setOnRefreshListener {
+            // Perform your data refresh operation here
+            getShipment()
+            // When the refresh is complete, call setRefreshing(false) to stop the loading indicator
+            binding?.swipeRefreshLayout?.isRefreshing = false
+        }
         viewModel.getShipmentOfLocal()
+        getShipment()
 
+    }
+
+    private fun getShipment() {
         viewModel.getShipment().observe(requireActivity()) { shipments ->
             viewModel.shipmentNetworksLocal.observe(viewLifecycleOwner) { list ->
                 shipmentListArchive.clear()
@@ -90,6 +100,9 @@ class ShipmentListFragment() : Fragment(), ArchiveOnClick, CoroutineScope {
                 if (list.isEmpty()) {
                     if (shipments != null) {
                         viewModel.addItems(shipments)
+                        runBlocking {
+                            viewModel.getShipmentOfLocal()
+                        }
                     }
                 } else {
                     list.let {
@@ -130,7 +143,6 @@ class ShipmentListFragment() : Fragment(), ArchiveOnClick, CoroutineScope {
 
 
         }
-
     }
 
     private fun showPopupMenu(anchorView: View) {
@@ -378,7 +390,7 @@ class ShipmentListFragment() : Fragment(), ArchiveOnClick, CoroutineScope {
     }
 
     override fun goToMoreFragment(shipmentItem: ShipmentNetwork) {
-        viewModel.shipmentLiveData.value = shipmentItem
+        viewModel.shipmenDetailLiveData.value = shipmentItem
         findNavController().navigate(R.id.action_shipmentListFragment_to_shipmentMoreFragment)
     }
 

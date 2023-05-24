@@ -36,7 +36,7 @@ class ShipmentMoreFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[ShipmentListViewModel::class.java]
 
-        viewModel.shipmentLiveData.observe(viewLifecycleOwner, Observer { shipment ->
+        viewModel.shipmenDetailLiveData.observe(viewLifecycleOwner, Observer { shipment ->
             binding?.number?.text = "Number: ${shipment.number}"
             binding?.expiryDate?.text = "Expiry Date: ${shipment.expiryDate}"
             binding?.storedDate?.text = "Stored Date: ${shipment.storedDate}"
