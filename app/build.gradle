@@ -23,7 +23,9 @@ android {
     dataBinding {
         enabled true
     }
-
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
     buildTypes {
         release {
             minifyEnabled false
