@@ -5,6 +5,7 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito
+import org.mockito.internal.verification.VerificationModeFactory.times
 import pl.inpost.recruitmenttask.di.MockShipmentApi
 import pl.inpost.recruitmenttask.model.local.*
 import pl.inpost.recruitmenttask.model.local.db.dao.ShipmentNetworkDao
@@ -15,7 +16,6 @@ import kotlin.random.Random
 class ShipmentRepositoryDaoTest {
     lateinit var mockShipmentNetworkDao: ShipmentNetworkDao
     lateinit var shipmentRepositoryDao: ShipmentRepositoryDao
-    lateinit var mockShipmentApi: MockShipmentApi
 
     @Before
     fun setup(){
@@ -40,24 +40,24 @@ class ShipmentRepositoryDaoTest {
     fun testUpdateItem() {
         // Mocked input data
         val shipmentItem = mockShipmentNetwork()
+        Mockito.doNothing().`when`(mockShipmentNetworkDao).update(shipmentItem)
 
         // Call the method under test
         shipmentRepositoryDao.updateItem(shipmentItem)
 
         // Verify the expected interaction with the DAO
-        Mockito.verify(mockShipmentNetworkDao).update(shipmentItem)
+        Mockito.verify(mockShipmentNetworkDao,times(1)).update(shipmentItem)
     }
 
     @Test
     fun testInsertItem() = runBlocking{
         // Mocked input data
         val shipmentItem = mockShipmentNetwork()
-
         // Call the method under test
         shipmentRepositoryDao.insert(shipmentItem)
 
         // Verify the expected interaction with the DAO
-        Mockito.verify(mockShipmentNetworkDao).insertShipments(shipmentItem)
+        Mockito.verify(mockShipmentNetworkDao, times(1)).insertShipments(shipmentItem)
     }
 
     @Test
@@ -69,7 +69,8 @@ class ShipmentRepositoryDaoTest {
         shipmentRepositoryDao.insertItems(shipmentsResponse)
 
         // Verify the expected interaction with the DAO
-        Mockito.verify(mockShipmentNetworkDao).insertItems(shipmentsResponse.shipments)
+        Mockito.verify(mockShipmentNetworkDao, times(1)).
+        insertItems(shipmentsResponse.shipments)
     }
 
     private fun mockShipmentNetwork(

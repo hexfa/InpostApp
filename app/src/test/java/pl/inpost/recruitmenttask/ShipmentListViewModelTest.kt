@@ -3,6 +3,7 @@ package pl.inpost.recruitmenttask
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
@@ -18,8 +19,10 @@ import java.time.ZonedDateTime
 import kotlin.random.Random
 
 class ShipmentListViewModelTest {
+
     private lateinit var mockShipmentApi: ShipmentApi
     private lateinit var mockShipmentDao: ShipmentNetworkDao
+    private lateinit var shipmentListViewModel: ShipmentListViewModel
 
     @get:Rule
     val mainDispatcherRule = MainDispatcherRule()
@@ -28,23 +31,35 @@ class ShipmentListViewModelTest {
     fun setup() {
         mockShipmentApi = Mockito.mock(ShipmentApi::class.java)
         mockShipmentDao = Mockito.mock(ShipmentNetworkDao::class.java)
+
+        shipmentListViewModel = ShipmentListViewModel(
+            ShipmentRepository(mockShipmentApi),
+            ShipmentRepositoryDao(mockShipmentDao)
+        )
     }
 
 
     @Test
     fun test_getShipment() = runBlocking {
-        val shipmentRepository = ShipmentRepository(mockShipmentApi)
-        val shipmentListViewModel = ShipmentListViewModel(
-            shipmentRepository,
-            ShipmentRepositoryDao(mockShipmentDao)
-        )
-
         val shipmentsResponse = ShipmentsResponse(arrayListOf(mockShipmentNetwork()))
         Mockito.`when`(mockShipmentApi.getShipments()).thenReturn(shipmentsResponse)
 
-        val shipmentsResponseLiveData = shipmentListViewModel.getShipment()
+        val shipmentsResponseLiveData = MutableLiveData<ShipmentsResponse>()
 
-        Assert.assertEquals(shipmentsResponse.shipments, shipmentsResponseLiveData.value?.shipments)
+        shipmentsResponseLiveData.postValue(shipmentsResponse)
+
+        //Act
+        shipmentListViewModel.getShipments()
+
+        Assert.assertEquals(
+            shipmentsResponseLiveData.value,
+            shipmentListViewModel.shipmentNetworksRemoteLiveData.value
+        )
+    }
+
+    @Test
+    fun test_addItems() {
+        val shipmentsResponse = ShipmentsResponse(arrayListOf(mockShipmentNetwork()))
     }
 
     private fun mockShipmentNetwork(
