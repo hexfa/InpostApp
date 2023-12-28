@@ -106,7 +106,7 @@ https://github.com/hexfa/InpostApp.git
 
    [logo]: <https://github.com/hexfa/Files/blob/main/InpostApp/Logo/Icon.png> 
    [git]: <https://upload.wikimedia.org/wikipedia/commons/5/57/Iconoir_github-outline.svg>
-   [site]: <https://inpost.pl>
+   [site]: <https://github.com/hexfa/InpostApp>
    [hexfa]: <https://github.com/hexfa>
    [dokka]: <#dokka>
    [doc]: <https://hexfa.com/my-git-doc/inpost/documents>
